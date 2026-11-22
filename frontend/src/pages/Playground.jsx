@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
-const CODE_PY = `from memorygate import Client
+const CODE_PY = `from agentflow import Client
 
 mg = Client(api_key="mg_...")
 
@@ -30,8 +30,8 @@ if decision.allowed:
     return crm.read(decision.effective_payload)
 raise decision.to_exception()`;
 
-const CODE_TS = `import { MemoryOS } from "memoryos-sdk";
-const mg = new MemoryOS({ apiKey: process.env.MG_KEY! });
+const CODE_TS = `import { Agentflow.ai } from "agentflow-sdk";
+const mg = new Agentflow.ai({ apiKey: process.env.MG_KEY! });
 
 const d = await mg.evaluate({
   agentId: "agent_crm_copilot",
@@ -137,7 +137,7 @@ export default function Playground() {
             </h1>
             <p className="text-neutral-400 text-lg mt-6 leading-relaxed max-w-[540px]">
               AI agents can authenticate successfully and still perform dangerous actions.
-              MemoryOS is the runtime gate between the agent and the system it wants to affect.
+              Agentflow.ai is the runtime gate between the agent and the system it wants to affect.
               Evaluate the request before execution and see exactly why it was allowed, blocked, modified, or escalated.
             </p>
             <div className="mt-8 flex items-center gap-3">
@@ -408,13 +408,13 @@ export default function Playground() {
 
           <div className="grid grid-cols-1 gap-3">
             {[
-              ["pip install memorygate",                              "The core client — sync & async, works from Python 3.9+."],
-              ["pip install memorygate[langgraph]",                   "LangGraph node wrapper."],
-              ["pip install memorygate[openai]",                      "OpenAI Agents SDK middleware."],
-              ["pip install memorygate[crewai]",                      "CrewAI GovernedCrew subclass."],
-              ["pip install memorygate[google]",                      "Google ADK integration."],
+              ["pip install agentflow",                              "The core client — sync & async, works from Python 3.9+."],
+              ["pip install agentflow[langgraph]",                   "LangGraph node wrapper."],
+              ["pip install agentflow[openai]",                      "OpenAI Agents SDK middleware."],
+              ["pip install agentflow[crewai]",                      "CrewAI GovernedCrew subclass."],
+              ["pip install agentflow[google]",                      "Google ADK integration."],
               ["memorygate mcp-proxy --upstream ...",                 "Governance proxy for any MCP server."],
-              ["npm install memoryos-sdk",                         "TypeScript / Node client."],
+              ["npm install agentflow-sdk",                         "TypeScript / Node client."],
             ].map(([cmd, hint]) => (
               <div key={cmd} className="surface rounded-lg p-4">
                 <div className="flex items-center gap-3">
@@ -491,7 +491,7 @@ export default function Playground() {
       {/* Footer CTA */}
       <section className="max-w-[1400px] mx-auto px-6 py-20 border-t hairline text-center">
         <h2 className="font-display text-4xl tracking-tight max-w-2xl mx-auto">
-          Ready to deploy MemoryOS in front of your own agents?
+          Ready to deploy Agentflow.ai in front of your own agents?
         </h2>
         <p className="text-neutral-400 mt-4 max-w-xl mx-auto">
           Spin up a tenant in the console, register your agents, author policies, and get an audit
@@ -510,7 +510,7 @@ export default function Playground() {
           </a>
         </div>
         <div className="text-neutral-600 text-xs font-mono-plex mt-12">
-          © 2026 MemoryOS — zero-trust runtime for autonomous AI
+          © 2026 Agentflow.ai — zero-trust runtime for autonomous AI
         </div>
       </section>
       </div>

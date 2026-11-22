@@ -27,7 +27,7 @@ export interface DecisionResponse {
 }
 
 /**
- * The decision returned by MemoryGate for one agent action.
+ * The decision returned by Agentflow for one agent action.
  *
  * - `effect` is one of "allow" / "block" / "modify" / "escalate".
  * - `effectivePayload` is what the caller should actually use:

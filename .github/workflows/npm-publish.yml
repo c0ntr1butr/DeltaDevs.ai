@@ -1,4 +1,4 @@
-name: Publish memoryos-sdk to npm
+name: Publish agentflow-sdk to npm
 
 # Runs when a tag matching v* is pushed (e.g. v0.4.0, v0.4.1, v1.0.0),
 # OR when manually dispatched from the Actions tab.
@@ -61,8 +61,8 @@ jobs:
             echo "::error::Git tag v$TAG_VERSION does not match package.json version $PKG_VERSION"
             exit 1
           fi
-          if [ "$PKG_NAME" != "memoryos-sdk" ]; then
-            echo "::error::Expected package name 'memoryos-sdk', got '$PKG_NAME'"
+          if [ "$PKG_NAME" != "agentflow-sdk" ]; then
+            echo "::error::Expected package name 'agentflow-sdk', got '$PKG_NAME'"
             exit 1
           fi
 

@@ -18,30 +18,30 @@ User elaboration: framework-agnostic AI Runtime Governance Layer that sits betwe
 
 ### V6 — Public demo deployment prep (Feb 15, 2026)
 - **CORS/CSRF allowlist**: `.env` now sets `ALLOWED_ORIGINS` to include `http://localhost:3000/3001`, the preview host, and the deployed `ai-governance-layer.emergent.host`; `ALLOWED_ORIGIN_SUFFIXES` extended with `.emergent.host` and `.emergentagent.com` so any Emergent deployment subdomain works. No wildcard `*` in production — verified by `test_acao_is_never_wildcard`. Disallowed origins get 403 on mutations, GETs and Bearer/SDK callers stay exempt.
-- **GitHub rebrand**: every `https://github.com/memorygate` link now points to `https://github.com/c0ntr1butr/MemoryOS` — header, footer social row, Pricing "Community" CTA, and Playground header (data-testids: `public-header-github`, `playground-header-github`).
+- **GitHub rebrand**: every `https://github.com/agentflow` link now points to `https://github.com/c0ntr1butr/Agentflow.ai` — header, footer social row, Pricing "Community" CTA, and Playground header (data-testids: `public-header-github`, `playground-header-github`).
 - **Contact details** unified to Email `praneethmangala339@gmail.com` and Phone `+91 83285 75111`:
   - Home: new `#contact` strip above the footer (`home-contact-email`, `home-contact-phone`).
   - Docs: new contact section at page bottom (`docs-contact-email`, `docs-contact-phone`).
   - Security: whitepaper/questionnaire CTAs + bottom contact block updated (`security-whitepaper-email`, `security-questionnaire-email`, `security-phone`, `security-contact-email`, `security-contact-phone`).
   - Playground: "Book an enterprise pilot" mailto (`playground-book-pilot`).
   - Footer (PublicShell): Company column shows email + phone directly.
-- Verified: 17/17 CORS/CSRF pytest cases (`tests/test_cors_csrf.py`), 6/6 public routes audited in headless browser, e2e login flow works from the deployed origin, no residual `security@memorygate.dev` / `pilot@memorygate.dev` references anywhere in the DOM.
+- Verified: 17/17 CORS/CSRF pytest cases (`tests/test_cors_csrf.py`), 6/6 public routes audited in headless browser, e2e login flow works from the deployed origin, no residual `security@agentflow.ai` / `pilot@agentflow.ai` references anywhere in the DOM.
 
 ### V7 — Production readiness sprint (Feb 15, 2026)
-- **Full TypeScript SDK** (`@memorygate/sdk` v0.4.0) at `/app/sdks/typescript`. Split into `client.ts`, `models.ts`, `errors.ts`, plus five middleware sub-packages: `middleware/langgraph`, `middleware/openai-agents`, `middleware/crewai`, `middleware/google-adk`, `middleware/mcp`. Multi-entry `exports` for tree-shaking, ESM + CJS + `.d.ts` outputs, `tsup` build, 17 vitest cases all green.
+- **Full TypeScript SDK** (`@agentflow/sdk` v0.4.0) at `/app/sdks/typescript`. Split into `client.ts`, `models.ts`, `errors.ts`, plus five middleware sub-packages: `middleware/langgraph`, `middleware/openai-agents`, `middleware/crewai`, `middleware/google-adk`, `middleware/mcp`. Multi-entry `exports` for tree-shaking, ESM + CJS + `.d.ts` outputs, `tsup` build, 17 vitest cases all green.
 - **Dodo Payments Checkout** for the Growth tier — `POST /api/payments/checkout`, `GET /api/payments/status/{session_id}`, `POST /api/webhook/dodo-payments` (idempotent). `Dodo Payments Checkout Sessions` with Dodo product IDs are configured with `DODO_GROWTH_MONTHLY_PRODUCT_ID` and `DODO_GROWTH_ANNUAL_PRODUCT_ID`. Frontend `Pricing.jsx` has a monthly/annual toggle and a real `Subscribe · $1,499/mo` CTA that redirects to Dodo hosted checkout. `PricingSuccess.jsx` polls status 10× 2s and shows a confetti-worthy "You're on Growth" success or failure/timeout states. Enterprise still routes to `/pilot`.
 - **Premium footer** in `PublicShell.jsx`: 4 columns (Product / Resources / Company + dedicated Contact section), animated AI backdrop (SVG network with pulsing nodes + grid + cyan radial glow), Mail/Phone/BookOpen icon cards for contact, brand column with compliance badges, and a legal bar. Now included on every public route — /, /pricing, /docs, /security, /pilot, /product, /customers, /benchmarks, /playground.
 - **Enterprise messaging**: Home hero now reads *"Deploy, govern, and scale AI agents your security team can defend."* with subcopy explicitly naming LangGraph, OpenAI Agents SDK, CrewAI, Google ADK, and MCP.
-- **Verified by testing_agent (iteration_4.json)**: 9/9 Dodo Payments backend tests, 17/17 CORS/CSRF regression, 17/17 TS SDK vitest, footer audit clean across all 9 public routes, no residual `memorygate.dev` addresses. Playground footer gap flagged and fixed (Playground.jsx now wraps content in `<PublicShell>`).
+- **Verified by testing_agent (iteration_4.json)**: 9/9 Dodo Payments backend tests, 17/17 CORS/CSRF regression, 17/17 TS SDK vitest, footer audit clean across all 9 public routes, no residual `agentflow.ai` addresses. Playground footer gap flagged and fixed (Playground.jsx now wraps content in `<PublicShell>`).
 
-### V8 — Premium polish + MemoryOS rebrand (Feb 15, 2026)
-- **Rebrand** MemoryGate → **MemoryOS** across every public route, /auth, and /console (verified: `innerText.match(/MemoryGate/g).length === 0` on all 10 audited pages). Header logo, footer brand, hero copy, legal bar, and code samples all say MemoryOS. Python SDK folder path (`/app/sdks/python/memorygate/`) intentionally kept — pip package name is out-of-scope.
-- **Footer redesign** in `PublicShell.jsx`: replaced the 3-card Contact block with a clean **4-column inline layout** (Contact / Email / Phone / GitHub). Each has an uppercase label + value below — no cards, no boxes. Email uses `truncate + whitespace-nowrap` so it can never wrap character-by-character. Phone uses `whitespace-nowrap`. All Twitter/LinkedIn/X social links removed — only GitHub remains, pointing to `https://github.com/c0ntr1butr/MemoryOS`.
-- **TypeScript SDK repackaged**: `@memorygate/sdk` → `memoryos-sdk` v0.4.0. Class `MemoryGate` kept exported for backwards-compat with `MemoryOS` as an alias — both work. Produced production tarball `/app/sdks/typescript/memoryos-sdk-0.4.0.tgz` (24.2 kB, 40 files). Local install verified: `npm install ./memoryos-sdk-0.4.0.tgz && require('memoryos-sdk')` returns all classes.
+### V8 — Premium polish + Agentflow.ai rebrand (Feb 15, 2026)
+- **Rebrand** Agentflow → **Agentflow.ai** across every public route, /auth, and /console (verified: `innerText.match(/Agentflow/g).length === 0` on all 10 audited pages). Header logo, footer brand, hero copy, legal bar, and code samples all say Agentflow.ai. Python SDK folder path (`/app/sdks/python/agentflow/`) intentionally kept — pip package name is out-of-scope.
+- **Footer redesign** in `PublicShell.jsx`: replaced the 3-card Contact block with a clean **4-column inline layout** (Contact / Email / Phone / GitHub). Each has an uppercase label + value below — no cards, no boxes. Email uses `truncate + whitespace-nowrap` so it can never wrap character-by-character. Phone uses `whitespace-nowrap`. All Twitter/LinkedIn/X social links removed — only GitHub remains, pointing to `https://github.com/c0ntr1butr/Agentflow.ai`.
+- **TypeScript SDK repackaged**: `@agentflow/sdk` → `agentflow-sdk` v0.4.0. Class `Agentflow` kept exported for backwards-compat with `Agentflow.ai` as an alias — both work. Produced production tarball `/app/sdks/typescript/agentflow-sdk-0.4.0.tgz` (24.2 kB, 40 files). Local install verified: `npm install ./agentflow-sdk-0.4.0.tgz && require('agentflow-sdk')` returns all classes.
 - **Verified by testing_agent (iteration_5.json)**: 17/17 TS SDK vitest, 2/2 backend smoke (login + Dodo Payments checkout), footer inline-Contact audit + rebrand audit + Twitter/LinkedIn purge across 9 public routes + /auth + /console.
 
 ### V9 — Push-button releases (Feb 15, 2026)
-- **CI/CD for `memoryos-sdk`**:
+- **CI/CD for `agentflow-sdk`**:
   - `.github/workflows/npm-publish.yml` — on `v*` tag push OR manual dispatch, runs typecheck + tests + build, verifies tag/package-name match, and `npm publish --access public --provenance` (signed builds).
   - `.github/workflows/sdk-ci.yml` — every PR touching `sdks/typescript/**` gets typecheck + 17 vitest cases + build + `npm pack` + real install-verify, matrix-tested on Node 18/20/22.
 - **`sdks/typescript/RELEASING.md`** — one-time setup (add `NPM_TOKEN` to repo secrets + one manual first-publish to reserve the name) then `npm version patch && git push --tags` forever after.
@@ -52,8 +52,8 @@ User elaboration: framework-agnostic AI Runtime Governance Layer that sits betwe
 - **package.json metadata**: 20-keyword tag cloud, author object with URL, `homepage#readme`, `funding` (GitHub sponsors), `publishConfig.provenance:true`, `files` whitelist, `engines.node>=18`, new `verify` script (`typecheck && test && test:examples && build`).
 - **CHANGELOG.md** v0.4.0 in Keep-a-Changelog format.
 - **Apache 2.0 LICENSE** file at SDK root.
-- **Compile-verified README examples**: `examples/{quickstart,frameworks,errors}.ts` + `tsconfig.examples.json` mapping `memoryos-sdk` → `./src/index.ts`. The `yarn test:examples` script now gates CI so the README code samples can NEVER drift from working code.
-- **Tarball hygiene**: `npm pack` produces `memoryos-sdk-0.4.0.tgz` at 32.3 kB / 42 files. Zero `src/`, `tests/`, `examples/`, `tsconfig*`, `node_modules/`, `.env`, or self-referenced `.tgz`. Only `dist/**`, `README.md`, `CHANGELOG.md`, `LICENSE`, `package.json`.
+- **Compile-verified README examples**: `examples/{quickstart,frameworks,errors}.ts` + `tsconfig.examples.json` mapping `agentflow-sdk` → `./src/index.ts`. The `yarn test:examples` script now gates CI so the README code samples can NEVER drift from working code.
+- **Tarball hygiene**: `npm pack` produces `agentflow-sdk-0.4.0.tgz` at 32.3 kB / 42 files. Zero `src/`, `tests/`, `examples/`, `tsconfig*`, `node_modules/`, `.env`, or self-referenced `.tgz`. Only `dist/**`, `README.md`, `CHANGELOG.md`, `LICENSE`, `package.json`.
 - **CI reordering**: `yarn test:examples` now runs before `yarn test` in `sdk-ci.yml` (cosmetic fix from testing_agent iteration_6 review).
 - **Verified by testing_agent iteration_6**: 100% pass on backend/frontend/SDK (25+ metadata checks, 17/17 vitest, tarball whitelist, install-from-tarball verification, all 5 middleware sub-paths resolvable, both CI YAMLs parse, backend/frontend smoke).
 
@@ -87,20 +87,20 @@ User elaboration: framework-agnostic AI Runtime Governance Layer that sits betwe
 - Production security stack: env-driven CORS allowlist + wildcard suffixes, Origin CSRF guard on mutations, in-process sliding-window rate limiter, security headers (`X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `Strict-Transport-Security`), tight pydantic validation, structured JSON audit stream, client-IP + user-agent captured on every decision.
 
 ### V2 / V3 — Enterprise platform
-- Rebrand to **MemoryGate**, grouped sidebar.
+- Rebrand to **Agentflow**, grouped sidebar.
 - **API keys** (rotate/revoke), **Webhooks** (Slack/Teams/PagerDuty/custom via real `httpx` delivery), **Connectors** (Postgres/Mongo/SurrealDB/Redis/Pinecone/Qdrant/REST), **Members** + full **RBAC** (owner/admin/editor/viewer) across every mutation, **Policy versioning + rollback**, **Compliance center** (SOC 2 / ISO 27001 / GDPR / HIPAA + CSV export), **Explainable AI decisions** (evaluation trace), **Real-time WebSocket** decision stream, **Risk heatmap**, **Interactive SDK docs**, **Runtime Architecture** page.
 - Verified: **58/58 pytest cases** (23 V1 + 35 V2).
 
 ### V4 — Real infrastructure (Jan 14, 2026)
-- **Real `memorygate` Python SDK** — installable via `pip install -e ./sdks/python`. Sync `Client` + async `AsyncClient`, typed `Decision` model with `.allowed`, `.effective_payload`, `.trace`, `.to_exception()`. Includes `.guard()` helper that raises on non-allow decisions.
-  - Framework middleware in `memorygate.middleware.*`:
-    - **`langgraph.governed_node`** — wraps any LangGraph node so its state passes through MemoryGate first; blocks/escalates halt the graph.
+- **Real `agentflow` Python SDK** — installable via `pip install -e ./sdks/python`. Sync `Client` + async `AsyncClient`, typed `Decision` model with `.allowed`, `.effective_payload`, `.trace`, `.to_exception()`. Includes `.guard()` helper that raises on non-allow decisions.
+  - Framework middleware in `agentflow.middleware.*`:
+    - **`langgraph.governed_node`** — wraps any LangGraph node so its state passes through Agentflow first; blocks/escalates halt the graph.
     - **`openai_agents.governed`** — walks an Agents-SDK `Agent`, wraps every tool's callable in place.
     - **`crewai.GovernedCrew`** — drop-in `Crew` subclass that wraps every tool's `.run()` / `._run()`.
     - **`google_adk.governed`** — wraps callables on Google ADK `LlmAgent.tools` / `.tool_registry`.
-    - **`mcp.MCPProxy`** — JSON-RPC proxy that governs every MCP `tools/call` before forwarding to the real MCP server. Also exposed as a CLI: `memorygate mcp-proxy --upstream ... --api-key ...`.
+    - **`mcp.MCPProxy`** — JSON-RPC proxy that governs every MCP `tools/call` before forwarding to the real MCP server. Also exposed as a CLI: `agentflow mcp-proxy --upstream ... --api-key ...`.
   - Verified: **5/5 SDK unit tests** + a live end-to-end run through the local backend returning correct `modify` (with 5-step trace) and `block` decisions; `.guard()` correctly raised `PermissionDenied`.
-- **TypeScript SDK skeleton** (`@memorygate/sdk`) — `Decision` class, `MemoryGate` client, typed exceptions, ESM+CJS build config.
+- **TypeScript SDK skeleton** (`@agentflow/sdk`) — `Decision` class, `Agentflow` client, typed exceptions, ESM+CJS build config.
 - **Public no-signup playground** — new `/playground` route (outside auth wrapper) with:
   - Hero + live decisions stream (public tenant, polled every 5 s).
   - 4 canned scenarios (PII redact / prod delete / high-risk billing / public docs) with expected badges + one "compose your own" custom mode.
@@ -113,7 +113,7 @@ User elaboration: framework-agnostic AI Runtime Governance Layer that sits betwe
   - 32-way stress: 133 req/s, p50 242 ms, p99 370 ms.
 - **OpenAPI polish**: 13 tags, per-endpoint summaries, description block. Swagger UI at `/api/docs`, ReDoc at `/api/redoc`, spec at `/api/openapi.json`.
 - **Rate-limit tuning**: bumped `/api/evaluate` to 6 000 req/min (100 rps) per IP so the SDK can actually be used at production throughput.
-- **Rebrand** to *MemoryGate*, grouped sidebar (Security / Policy / Agents & Access / Integrations / Observability / System).
+- **Rebrand** to *Agentflow*, grouped sidebar (Security / Policy / Agents & Access / Integrations / Observability / System).
 - **API keys**: `POST /api-keys` returns secret once, `rotate`, `revoke`, hashed at rest (sha256), prefix + suffix display. Admin+ role required.
 - **Webhooks**: Slack / Teams / PagerDuty / custom endpoints, per-event filters, real `httpx` delivery via `asyncio.create_task`, `POST /webhooks/{id}/test`, delivery counters + last status persisted.
 - **Enterprise connectors**: PostgreSQL / MongoDB / SurrealDB / Redis / Pinecone / Qdrant / REST — configurable, testable, scope-bound. `POST /connectors/{id}/test` does a real ping for MongoDB & REST, heuristic for others.
@@ -124,7 +124,7 @@ User elaboration: framework-agnostic AI Runtime Governance Layer that sits betwe
 - **Real-time WebSocket stream**: `wss://.../api/ws/decisions?token=<jwt>` — JWT-authenticated per-tenant fan-out, connected from the Runtime page (falls back to polling on failure).
 - **Risk heatmap**: `GET /analytics/heatmap` returns a resource × action matrix with volume + average-risk cells; rendered as a colored grid on the Analytics page.
 - **Interactive SDK docs**: 6 tabs (Python / TypeScript / LangGraph / OpenAI Agents SDK / CrewAI / MCP) with copy-paste snippets + a live `/api/evaluate` playground.
-- **Runtime Architecture page**: 3-column visual (agents → MemoryGate → enterprise systems), decision-engine steps, deployment models (managed / VPC / air-gapped), zero-trust principles.
+- **Runtime Architecture page**: 3-column visual (agents → Agentflow → enterprise systems), decision-engine steps, deployment models (managed / VPC / air-gapped), zero-trust principles.
 
 ### Verified
 - **Backend**: 58/58 pytest cases pass (23 V1 regression + 35 V2). RBAC verified across all mutation endpoints; a viewer POSTing `/api/policies` now correctly gets 403.
@@ -134,7 +134,7 @@ User elaboration: framework-agnostic AI Runtime Governance Layer that sits betwe
 - ✅ **V1**: Runtime governance platform (23/23 tests, hardened)
 - ✅ **V2**: SDKs + integrations (dashboard side)
 - ✅ **V3**: Visual policy builder + compliance
-- ✅ **V4**: Real `pip install memorygate` SDK with 5 middleware modules + public no-signup playground + benchmarks + OpenAPI docs
+- ✅ **V4**: Real `pip install agentflow` SDK with 5 middleware modules + public no-signup playground + benchmarks + OpenAPI docs
 - 🚀 **V5**: **Pilot with 3 enterprise teams.** Stop building UI. Talk to security engineers, CTOs, and AI platform leads. Turn feedback into a pricing sheet and an actual SLA.
 
 ## Prioritized backlog (deferred, non-blocking)
@@ -175,4 +175,4 @@ Not included in this export — see `LOCAL_SETUP.md` to configure your own
 
 ### Memory provider
 
-Breeth provides persistent, intent-aware agent memory via its REST API. MemoryOS keeps tenant governance, policy decisions and audit records in MongoDB while Breeth stores/searches agent memory.
+Breeth provides persistent, intent-aware agent memory via its REST API. Agentflow.ai keeps tenant governance, policy decisions and audit records in MongoDB while Breeth stores/searches agent memory.

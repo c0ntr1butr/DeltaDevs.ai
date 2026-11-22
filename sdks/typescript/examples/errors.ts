@@ -2,15 +2,15 @@
  * Compile-checked mirror of the README Error handling section.
  */
 import {
-  MemoryOS,
+  Agentflow,
   PermissionDenied,
   HumanApprovalRequired,
   NetworkError,
   UnknownAgent,
-} from "memoryos-sdk";
+} from "agentflow-sdk";
 
 async function handleErrors() {
-  const mg = new MemoryOS({ apiKey: process.env.MG_KEY });
+  const mg = new Agentflow({ apiKey: process.env.MG_KEY });
 
   try {
     await mg.guard({

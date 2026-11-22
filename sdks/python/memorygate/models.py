@@ -1,4 +1,4 @@
-"""Typed models returned by the MemoryGate client."""
+"""Typed models returned by the Agentflow client."""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -21,7 +21,7 @@ class TraceStep:
 
 @dataclass
 class Decision:
-    """The decision returned by MemoryGate for one agent action.
+    """The decision returned by Agentflow for one agent action.
 
     - `effect` is one of "allow" / "block" / "modify" / "escalate".
     - `effective_payload` is the payload the caller should actually use:

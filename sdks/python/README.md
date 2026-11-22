@@ -1,17 +1,17 @@
-# memorygate — runtime governance for autonomous AI agents
+# agentflow — runtime governance for autonomous AI agents
 
 Framework-agnostic middleware that evaluates every agent action against
 identity, policy, context, and risk **before** it reaches your enterprise
 systems.
 
-    pip install memorygate
+    pip install agentflow
 
 ## Quickstart
 
 ```python
-from memorygate import Client
+from agentflow import Client
 
-mg = Client(api_key="mg_...")   # from the MemoryGate console
+mg = Client(api_key="mg_...")   # from the Agentflow console
 
 decision = mg.evaluate(
     agent_id="agent_crm_copilot",
@@ -42,16 +42,16 @@ run_deploy(payload)
 Install with the extra you need:
 
 ```bash
-pip install memorygate[langgraph]     # LangGraph
-pip install memorygate[openai]        # OpenAI Agents SDK
-pip install memorygate[crewai]        # CrewAI
-pip install memorygate[google]        # Google ADK
-pip install memorygate[mcp]           # MCP proxy
+pip install agentflow[langgraph]     # LangGraph
+pip install agentflow[openai]        # OpenAI Agents SDK
+pip install agentflow[crewai]        # CrewAI
+pip install agentflow[google]        # Google ADK
+pip install agentflow[mcp]           # MCP proxy
 ```
 
 ### LangGraph
 ```python
-from memorygate.middleware.langgraph import governed_node
+from agentflow.middleware.langgraph import governed_node
 graph.add_node("crm", governed_node(call_crm, mg=mg,
     agent_id="agent_crm_copilot",
     resource_from=lambda s: f"crm.{s['action']}",
@@ -60,26 +60,26 @@ graph.add_node("crm", governed_node(call_crm, mg=mg,
 
 ### OpenAI Agents SDK
 ```python
-from memorygate.middleware.openai_agents import governed
+from agentflow.middleware.openai_agents import governed
 guarded = governed(agent, mg=mg, agent_id="agent_crm_copilot")
 ```
 
 ### CrewAI
 ```python
-from memorygate.middleware.crewai import GovernedCrew
+from agentflow.middleware.crewai import GovernedCrew
 crew = GovernedCrew(agents=[analyst], tasks=[task], mg=mg,
                     agent_id_for=lambda a: f"agent_{a.role}")
 ```
 
 ### Google ADK
 ```python
-from memorygate.middleware.google_adk import governed
+from agentflow.middleware.google_adk import governed
 guarded = governed(agent, mg=mg, agent_id="agent_gemini_crm")
 ```
 
 ### MCP proxy
 ```bash
-memorygate mcp-proxy \
+agentflow mcp-proxy \
     --upstream https://mcp.internal.example.com \
     --api-key mg_... \
     --agent-id agent_mcp_gateway \
@@ -87,12 +87,12 @@ memorygate mcp-proxy \
 ```
 
 Point any MCP client at `http://localhost:7443/mcp` and every `tools/call`
-is evaluated by MemoryGate before it reaches the real server.
+is evaluated by Agentflow before it reaches the real server.
 
 ## Environment variables
 
-- `MEMORYGATE_API_KEY` — used if `api_key=` is not passed to `Client()`.
-- `MEMORYGATE_URL`     — defaults to `https://api.memorygate.dev`.
+- `AGENTFLOW_API_KEY` — used if `api_key=` is not passed to `Client()`.
+- `AGENTFLOW_URL`     — defaults to `https://api.agentflow.dev`.
 
 ## License
 

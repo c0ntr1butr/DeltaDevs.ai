@@ -12,12 +12,12 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "memoryos-sdk": ["./src/index.ts"],
-      "memoryos-sdk/middleware/langgraph": ["./src/middleware/langgraph.ts"],
-      "memoryos-sdk/middleware/openai-agents": ["./src/middleware/openai-agents.ts"],
-      "memoryos-sdk/middleware/crewai": ["./src/middleware/crewai.ts"],
-      "memoryos-sdk/middleware/google-adk": ["./src/middleware/google-adk.ts"],
-      "memoryos-sdk/middleware/mcp": ["./src/middleware/mcp.ts"]
+      "agentflow-sdk": ["./src/index.ts"],
+      "agentflow-sdk/middleware/langgraph": ["./src/middleware/langgraph.ts"],
+      "agentflow-sdk/middleware/openai-agents": ["./src/middleware/openai-agents.ts"],
+      "agentflow-sdk/middleware/crewai": ["./src/middleware/crewai.ts"],
+      "agentflow-sdk/middleware/google-adk": ["./src/middleware/google-adk.ts"],
+      "agentflow-sdk/middleware/mcp": ["./src/middleware/mcp.ts"]
     }
   },
   "include": ["examples/**/*.ts"]

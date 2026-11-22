@@ -2,10 +2,10 @@
  * Compile-checked mirror of the README Quickstart.
  * Ensures every code sample the CTO reads on npm actually type-checks.
  */
-import { MemoryOS, PermissionDenied, HumanApprovalRequired } from "memoryos-sdk";
+import { Agentflow, PermissionDenied, HumanApprovalRequired } from "agentflow-sdk";
 
 async function quickstartEvaluate() {
-  const mg = new MemoryOS({ apiKey: process.env.MEMORYOS_API_KEY });
+  const mg = new Agentflow({ apiKey: process.env.AGENTFLOW_API_KEY });
 
   const decision = await mg.evaluate({
     agentId: "agent_crm_copilot",
@@ -23,7 +23,7 @@ async function quickstartEvaluate() {
 }
 
 async function quickstartGuard() {
-  const mg = new MemoryOS({ apiKey: process.env.MEMORYOS_API_KEY });
+  const mg = new Agentflow({ apiKey: process.env.AGENTFLOW_API_KEY });
 
   try {
     const d = await mg.guard({

@@ -22,7 +22,7 @@ export function PublicHeader() {
             <Shield size={16} className="text-cyan-300" />
           </div>
           <div>
-            <div className="font-display text-[15px] leading-none">MemoryOS</div>
+            <div className="font-display text-[15px] leading-none">Agentflow.ai</div>
             <div className="text-[10px] text-neutral-500 font-mono-plex mt-1">
               runtime.governance
             </div>
@@ -46,7 +46,7 @@ export function PublicHeader() {
         </nav>
         <div className="flex items-center gap-2 ml-auto">
           <a
-            href="https://github.com/c0ntr1butr/MemoryOS"
+            href="https://github.com/c0ntr1butr/Agentflow.ai"
             target="_blank"
             rel="noreferrer"
             className="btn-secondary text-sm hidden sm:flex items-center gap-2"
@@ -87,7 +87,7 @@ const COL_RESOURCES = [
   ["API reference", "/api/docs"],
   ["Python SDK", "/docs#python"],
   ["TypeScript SDK", "/docs#typescript"],
-  ["Changelog", "https://github.com/c0ntr1butr/MemoryOS/releases"],
+  ["Changelog", "https://github.com/c0ntr1butr/Agentflow.ai/releases"],
 ];
 
 const COL_COMPANY = [
@@ -245,7 +245,7 @@ export function PublicFooter() {
               <Shield size={18} className="text-cyan-300" />
             </div>
             <div>
-              <div className="font-display text-[16px]">MemoryOS</div>
+              <div className="font-display text-[16px]">Agentflow.ai</div>
               <div className="text-[10px] text-neutral-500 font-mono-plex -mt-0.5">
                 runtime.governance
               </div>
@@ -317,13 +317,13 @@ export function PublicFooter() {
               GitHub
             </div>
             <a
-              href="https://github.com/c0ntr1butr/MemoryOS"
+              href="https://github.com/c0ntr1butr/Agentflow.ai"
               target="_blank"
               rel="noreferrer"
               data-testid="footer-social-github"
               className="inline-flex items-center gap-2 font-mono-plex text-cyan-300 text-[15px] hover:underline decoration-cyan-500/40 underline-offset-4 whitespace-nowrap"
             >
-              <Github size={14} /> c0ntr1butr/MemoryOS
+              <Github size={14} /> c0ntr1butr/Agentflow.ai
             </a>
           </div>
         </div>
@@ -334,7 +334,7 @@ export function PublicFooter() {
         <div className="max-w-[1400px] mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <div className="text-neutral-600 text-xs font-mono-plex flex items-center gap-2">
             <MapPin size={12} className="text-cyan-300/70" />
-            © 2026 MemoryOS · zero-trust runtime for autonomous AI
+            © 2026 Agentflow.ai · zero-trust runtime for autonomous AI
           </div>
           <div className="text-neutral-600 text-xs font-mono-plex flex flex-wrap items-center gap-x-4 gap-y-2 max-w-full">
             <a
@@ -350,7 +350,7 @@ export function PublicFooter() {
             </a>
             <span>·</span>
             <a
-              href="https://github.com/c0ntr1butr/MemoryOS"
+              href="https://github.com/c0ntr1butr/Agentflow.ai"
               target="_blank"
               rel="noreferrer"
               className="hover:text-cyan-300 transition-colors inline-flex items-center gap-1"

@@ -2,19 +2,19 @@
  * Google ADK (Agent Development Kit) middleware.
  *
  * Wraps every callable on an `LlmAgent.tools` (or `.toolRegistry`) so its
- * invocation passes through MemoryGate first. Blocks / escalations raise;
+ * invocation passes through Agentflow first. Blocks / escalations raise;
  * `modify` decisions rewrite the arguments.
  *
  * ```ts
  * import { LlmAgent } from "@google/adk";
- * import { MemoryGate } from "@memorygate/sdk";
- * import { governed } from "@memorygate/sdk/middleware/google-adk";
+ * import { Agentflow } from "agentflow-sdk";
+ * import { governed } from "agentflow-sdk/middleware/google-adk";
  *
- * const mg = new MemoryGate({ apiKey: process.env.MG_KEY });
+ * const mg = new Agentflow({ apiKey: process.env.MG_KEY });
  * governed(mg, "agent_support", agent);
  * ```
  */
-import type { MemoryGate } from "../client.js";
+import type { Agentflow } from "../client.js";
 
 interface AdkToolLike {
   name?: string;
@@ -38,7 +38,7 @@ function pickFn(
   return null;
 }
 
-function wrap(mg: MemoryGate, agentId: string, tool: AdkToolLike, agentName: string) {
+function wrap(mg: Agentflow, agentId: string, tool: AdkToolLike, agentName: string) {
   const picked = pickFn(tool);
   if (!picked) return;
   const [key, original] = picked;
@@ -58,7 +58,7 @@ function wrap(mg: MemoryGate, agentId: string, tool: AdkToolLike, agentName: str
 }
 
 export function governed(
-  mg: MemoryGate,
+  mg: Agentflow,
   agentId: string,
   agent: AdkAgentLike,
 ): AdkAgentLike {

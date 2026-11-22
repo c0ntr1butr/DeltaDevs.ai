@@ -1,13 +1,13 @@
 """OpenAI Agents SDK integration.
 
 Wraps every tool call routed through an ``Agent`` so it flows through
-MemoryGate first. Zero rewrites of tool implementations.
+Agentflow first. Zero rewrites of tool implementations.
 
 Example::
 
     from agents import Agent, function_tool, Runner
-    from memorygate import Client
-    from memorygate.middleware.openai_agents import governed
+    from agentflow import Client
+    from agentflow.middleware.openai_agents import governed
 
     mg = Client(api_key="mg_...")
 
@@ -33,7 +33,7 @@ from ..exceptions import PermissionDenied, HumanApprovalRequired
 
 
 def _wrap_tool(tool: Any, *, mg: Client, agent_id: str) -> Any:
-    """Return a copy of ``tool`` whose invocation is governed by MemoryGate."""
+    """Return a copy of ``tool`` whose invocation is governed by Agentflow."""
     # openai-agents tools expose either ``.callable`` / ``.func`` or ``__call__``.
     # We defensively look up whichever the running version uses.
     for attr in ("callable", "func", "fn"):
@@ -75,7 +75,7 @@ def _wrap_tool(tool: Any, *, mg: Client, agent_id: str) -> Any:
 
 
 def governed(agent: Any, *, mg: Client, agent_id: str) -> Any:
-    """Wrap every tool on ``agent`` so its execution runs through MemoryGate.
+    """Wrap every tool on ``agent`` so its execution runs through Agentflow.
 
     Returns the same ``agent`` (mutated in place). The wrapper is
     idempotent — safe to call twice.

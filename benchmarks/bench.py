@@ -1,4 +1,4 @@
-"""MemoryGate latency & throughput benchmark.
+"""Agentflow latency & throughput benchmark.
 
 Runs a burst of concurrent /api/evaluate calls, measures p50/p95/p99 latency
 and sustained throughput. Reports as markdown for docs/README.

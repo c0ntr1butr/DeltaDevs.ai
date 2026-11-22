@@ -1,4 +1,4 @@
-"""Synchronous and asynchronous clients for the MemoryGate runtime."""
+"""Synchronous and asynchronous clients for the Agentflow runtime."""
 from __future__ import annotations
 
 import os
@@ -10,9 +10,9 @@ import httpx
 from .exceptions import GovernanceError, NetworkError, UnknownAgent
 from .models import Decision
 
-log = logging.getLogger("memorygate")
+log = logging.getLogger("agentflow")
 
-_DEFAULT_BASE_URL = os.environ.get("MEMORYGATE_URL", "https://api.memorygate.dev")
+_DEFAULT_BASE_URL = os.environ.get("AGENTFLOW_URL", "https://api.agentflow.ai")
 _DEFAULT_TIMEOUT = 5.0
 
 
@@ -20,7 +20,7 @@ def _headers(api_key: str) -> Dict[str, str]:
     return {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
-        "User-Agent": "memorygate-python/0.1.0",
+        "User-Agent": "agentflow-python/0.1.0",
     }
 
 
@@ -37,7 +37,7 @@ class Client:
 
     Configure once at process start:
 
-        mg = Client(api_key="mg_...", base_url="https://api.memorygate.dev")
+        mg = Client(api_key="mg_...", base_url="https://api.agentflow.ai")
 
     Then call :meth:`evaluate` around every agent action.
     """
@@ -50,9 +50,9 @@ class Client:
         timeout: float = _DEFAULT_TIMEOUT,
         default_agent_id: Optional[str] = None,
     ):
-        api_key = api_key or os.environ.get("MEMORYGATE_API_KEY")
+        api_key = api_key or os.environ.get("AGENTFLOW_API_KEY")
         if not api_key:
-            raise GovernanceError("Missing api_key. Pass api_key=... or set MEMORYGATE_API_KEY.")
+            raise GovernanceError("Missing api_key. Pass api_key=... or set AGENTFLOW_API_KEY.")
         self._api_key = api_key
         self._base = base_url.rstrip("/")
         self._client = httpx.Client(timeout=timeout, headers=_headers(api_key))
@@ -163,9 +163,9 @@ class AsyncClient:
         timeout: float = _DEFAULT_TIMEOUT,
         default_agent_id: Optional[str] = None,
     ):
-        api_key = api_key or os.environ.get("MEMORYGATE_API_KEY")
+        api_key = api_key or os.environ.get("AGENTFLOW_API_KEY")
         if not api_key:
-            raise GovernanceError("Missing api_key. Pass api_key=... or set MEMORYGATE_API_KEY.")
+            raise GovernanceError("Missing api_key. Pass api_key=... or set AGENTFLOW_API_KEY.")
         self._api_key = api_key
         self._base = base_url.rstrip("/")
         self._client = httpx.AsyncClient(timeout=timeout, headers=_headers(api_key))

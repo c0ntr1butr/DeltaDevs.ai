@@ -2,19 +2,19 @@
  * CrewAI (Node/TS port) middleware.
  *
  * Wraps every tool on every agent inside a Crew so its `.run()` (or `.func()`)
- * passes through MemoryGate first. Blocks / escalations propagate as errors;
+ * passes through Agentflow first. Blocks / escalations propagate as errors;
  * `modify` decisions rewrite the tool payload.
  *
  * ```ts
  * import { Crew, Agent } from "crewai-ts";  // or your local port
- * import { MemoryGate } from "@memorygate/sdk";
- * import { governCrew } from "@memorygate/sdk/middleware/crewai";
+ * import { Agentflow } from "agentflow-sdk";
+ * import { governCrew } from "agentflow-sdk/middleware/crewai";
  *
- * const mg = new MemoryGate({ apiKey: process.env.MG_KEY });
+ * const mg = new Agentflow({ apiKey: process.env.MG_KEY });
  * governCrew(mg, "agent_research", crew);
  * ```
  */
-import type { MemoryGate } from "../client.js";
+import type { Agentflow } from "../client.js";
 
 interface CrewToolLike {
   name?: string;
@@ -43,7 +43,7 @@ function pickFn(
   return null;
 }
 
-function wrap(mg: MemoryGate, agentId: string, tool: CrewToolLike, role: string) {
+function wrap(mg: Agentflow, agentId: string, tool: CrewToolLike, role: string) {
   const picked = pickFn(tool);
   if (!picked) return;
   const [key, original] = picked;
@@ -62,7 +62,7 @@ function wrap(mg: MemoryGate, agentId: string, tool: CrewToolLike, role: string)
   (tool as Record<string, unknown>)[key as string] = wrapped;
 }
 
-export function governCrew(mg: MemoryGate, agentId: string, crew: CrewLike): CrewLike {
+export function governCrew(mg: Agentflow, agentId: string, crew: CrewLike): CrewLike {
   for (const tool of crew.tools ?? []) wrap(mg, agentId, tool, "crew");
   for (const agent of crew.agents ?? []) {
     const role = agent.role ?? agent.name ?? "agent";

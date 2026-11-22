@@ -1,13 +1,13 @@
 """CrewAI integration.
 
 Wrap a Crew so that every tool execution across every agent in the crew is
-governed by MemoryGate first.
+governed by Agentflow first.
 
 Example::
 
     from crewai import Agent, Task, Crew
-    from memorygate import Client
-    from memorygate.middleware.crewai import GovernedCrew
+    from agentflow import Client
+    from agentflow.middleware.crewai import GovernedCrew
 
     mg = Client(api_key="mg_...")
 
@@ -34,7 +34,7 @@ except Exception:  # pragma: no cover
 
 def _wrap_tool_run(tool: Any, *, mg: Client, agent_id: str) -> Any:
     """Wrap a CrewAI BaseTool so its `.run()` / `._run()` goes through MG."""
-    if getattr(tool, "_memorygate_wrapped", False):
+    if getattr(tool, "_agentflow_wrapped", False):
         return tool
     original = getattr(tool, "_run", None) or getattr(tool, "run", None)
     if not callable(original):
@@ -65,16 +65,16 @@ def _wrap_tool_run(tool: Any, *, mg: Client, agent_id: str) -> Any:
         tool._run = _governed
     else:
         tool.run = _governed
-    tool._memorygate_wrapped = True
+    tool._agentflow_wrapped = True
     return tool
 
 
 class GovernedCrew(Crew):  # type: ignore[misc]
-    """Drop-in ``Crew`` that wires every tool through MemoryGate.
+    """Drop-in ``Crew`` that wires every tool through Agentflow.
 
     Constructor gains two extra kwargs:
-      - ``mg`` — a MemoryGate ``Client``.
-      - ``agent_id_for`` — callable mapping a CrewAI ``Agent`` to a MemoryGate agent id.
+      - ``mg`` — a Agentflow ``Client``.
+      - ``agent_id_for`` — callable mapping a CrewAI ``Agent`` to a Agentflow agent id.
         Defaults to a hash of the agent's role.
     """
 

@@ -1,8 +1,8 @@
-"""MemoryGate — runtime governance for autonomous AI agents.
+"""Agentflow — runtime governance for autonomous AI agents.
 
 Quickstart:
 
-    from memorygate import Client
+    from agentflow import Client
 
     mg = Client(api_key="mg_...")
     decision = mg.evaluate(

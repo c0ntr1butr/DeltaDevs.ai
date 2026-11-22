@@ -1,4 +1,4 @@
-# MemoryOS — Render + Dodo Payments + Breeth
+# Agentflow.ai — Render + Dodo Payments + Breeth
 
 ## 1. Deploy on Render
 
@@ -38,7 +38,7 @@ Register this webhook endpoint in the Dodo dashboard:
 https://<your-api-domain>/api/webhook/dodo-payments
 ```
 
-Enable the payment/subscription events required by your product. MemoryOS verifies the signed webhook, deduplicates by `webhook-id`, and updates the local payment transaction state.
+Enable the payment/subscription events required by your product. Agentflow.ai verifies the signed webhook, deduplicates by `webhook-id`, and updates the local payment transaction state.
 
 The checkout route is:
 
@@ -57,14 +57,14 @@ BREETH_API_KEY=<key>
 BREETH_BASE_URL=https://api.thebreeth.com/v1
 ```
 
-MemoryOS exposes:
+Agentflow.ai exposes:
 
 ```text
 POST /api/memory/write
 POST /api/memory/search
 ```
 
-The default Breeth `group_id` is automatically namespaced with the authenticated MemoryOS organization:
+The default Breeth `group_id` is automatically namespaced with the authenticated Agentflow.ai organization:
 
 ```text
 <org_id>:default
@@ -84,7 +84,7 @@ This keeps memory tenant-scoped while allowing sub-scopes for customers, agents,
 AI Agent
    |
    v
-MemoryOS Runtime
+Agentflow.ai Runtime
    |-- Identity
    |-- Risk
    |-- Policy
@@ -134,4 +134,4 @@ Do not commit real Dodo or Breeth API keys.
 For the hackathon, MongoDB is optional. If `MONGO_URL` is not set, the API uses `mongomock-motor` and keeps state in the service process. This avoids database setup and is suitable for a short-lived demo. Set a real MongoDB URL later for persistence.
 
 ### n8n
-Set `N8N_WEBHOOK_URL` to the Production Webhook URL from `integrations/n8n/MemoryOS-Agent-Decision-Router.json`. MemoryOS sends governance decisions to n8n asynchronously; a failed n8n workflow never blocks the governance decision.
+Set `N8N_WEBHOOK_URL` to the Production Webhook URL from `integrations/n8n/Agentflow.ai-Agent-Decision-Router.json`. Agentflow.ai sends governance decisions to n8n asynchronously; a failed n8n workflow never blocks the governance decision.

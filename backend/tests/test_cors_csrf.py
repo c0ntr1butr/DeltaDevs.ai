@@ -43,7 +43,7 @@ DISALLOWED_ORIGINS = [
     "https://evil.example.com",
     "http://attacker.local",
     "https://random-external-site.io",
-    "https://memorygate.dev.fake.host",
+    "https://agentflow.dev.fake.host",
 ]
 
 

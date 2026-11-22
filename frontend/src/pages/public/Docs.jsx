@@ -5,13 +5,13 @@ import { Terminal, Copy, Boxes, Cloud, Server, ArrowRight, BookOpen, Code2 } fro
 import { toast } from "sonner";
 
 const QUICKSTART = `# 1. Install the SDK
-pip install memorygate
+pip install agentflow
 
 # 2. Create an API key in the console (Settings → API keys)
-export MEMORYGATE_API_KEY=mg_...
+export AGENTFLOW_API_KEY=mg_...
 
 # 3. Guard your first agent action
-from memorygate import Client
+from agentflow import Client
 mg = Client(default_agent_id="agent_crm_copilot")
 
 decision = mg.evaluate(
@@ -38,7 +38,7 @@ docker run --name memorygate \\
 
 # Then point your agents at http://<host>:8080 via the SDK's base_url.
 `,
-  kubernetes: `# helm repo add memorygate https://charts.memorygate.dev
+  kubernetes: `# helm repo add memorygate https://charts.agentflow.ai
 # helm install memorygate memorygate/runtime \\
 #     --namespace memorygate --create-namespace \\
 #     -f values.yaml
@@ -214,7 +214,7 @@ export default function Docs() {
               Deploy where your agents already run.
             </h2>
             <p className="text-neutral-400 mt-3 max-w-2xl">
-              MemoryOS is a single stateless FastAPI service backed by MongoDB. Ship it on
+              Agentflow.ai is a single stateless FastAPI service backed by MongoDB. Ship it on
               Kubernetes, ECS/Fargate, Container Apps, or Cloud Run — same image, same config.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-2">
@@ -246,7 +246,7 @@ export default function Docs() {
               with <code className="font-mono-plex">.allowed</code>, <code className="font-mono-plex">.effective_payload</code>,
               <code className="font-mono-plex">.trace</code>, and <code className="font-mono-plex">.to_exception()</code>.
             </p>
-            <CodeBlock onCopy={copy} code={`from memorygate import Client, AsyncClient
+            <CodeBlock onCopy={copy} code={`from agentflow import Client, AsyncClient
 
 # Sync — one Client per process
 mg = Client(api_key="mg_...", default_agent_id="agent_crm_copilot")
@@ -267,9 +267,9 @@ async with AsyncClient(api_key="mg_...") as mg:
           {/* TypeScript SDK */}
           <div id="typescript">
             <h2 className="font-display text-3xl tracking-tight">TypeScript SDK</h2>
-            <CodeBlock onCopy={copy} code={`import { MemoryOS } from "memoryos-sdk";
+            <CodeBlock onCopy={copy} code={`import { Agentflow.ai } from "agentflow-sdk";
 
-const mg = new MemoryOS({ apiKey: process.env.MG_KEY! });
+const mg = new Agentflow.ai({ apiKey: process.env.MG_KEY! });
 
 const d = await mg.evaluate({
   agentId: "agent_crm_copilot",

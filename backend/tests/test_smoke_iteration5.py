@@ -1,5 +1,5 @@
 """
-Smoke tests for iteration 5 (MemoryOS rebrand + inline Contact footer polish).
+Smoke tests for iteration 5 (Agentflow.ai rebrand + inline Contact footer polish).
 Per iteration_5 review request: only two backend calls needed to prove nothing broke.
 Full V1/V2/V3 legacy suite already verified through iteration_4.
 """

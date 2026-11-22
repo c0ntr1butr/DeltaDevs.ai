@@ -1,11 +1,11 @@
-# MemoryOS + n8n
+# Agentflow.ai + n8n
 
-MemoryOS optionally POSTs every governance decision to `N8N_WEBHOOK_URL`. Governance does **not** depend on n8n being available.
+Agentflow.ai optionally POSTs every governance decision to `N8N_WEBHOOK_URL`. Governance does **not** depend on n8n being available.
 
 ## 1. Import
-Import `MemoryOS-Agent-Decision-Router.json` into n8n. Activate it and copy the Production Webhook URL.
+Import `Agentflow.ai-Agent-Decision-Router.json` into n8n. Activate it and copy the Production Webhook URL.
 
-## 2. Configure MemoryOS
+## 2. Configure Agentflow.ai
 Set:
 
 ```env

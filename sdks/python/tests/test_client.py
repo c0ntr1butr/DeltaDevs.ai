@@ -1,4 +1,4 @@
-"""Unit tests for the memorygate Python SDK.
+"""Unit tests for the agentflow Python SDK.
 
 Uses respx to mock httpx traffic so the tests are hermetic.
 Run:   pytest -q sdks/python/tests
@@ -6,8 +6,8 @@ Run:   pytest -q sdks/python/tests
 import pytest
 from unittest.mock import patch, MagicMock
 
-from memorygate import Client, Decision, PermissionDenied, HumanApprovalRequired
-from memorygate.exceptions import GovernanceError
+from agentflow import Client, Decision, PermissionDenied, HumanApprovalRequired
+from agentflow.exceptions import GovernanceError
 
 
 def _mock_response(payload, status=200):
@@ -34,7 +34,7 @@ DECISION_ESCALATE = {**DECISION_ALLOW, "id": "d_3", "decision": "escalate",
 
 
 def test_client_requires_api_key(monkeypatch):
-    monkeypatch.delenv("MEMORYGATE_API_KEY", raising=False)
+    monkeypatch.delenv("AGENTFLOW_API_KEY", raising=False)
     with pytest.raises(GovernanceError):
         Client()
 

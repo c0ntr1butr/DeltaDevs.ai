@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import {
-  MemoryGate,
+  Agentflow,
   Decision,
   GovernanceError,
   NetworkError,
@@ -35,13 +35,13 @@ function fakeFetch(body: unknown, init: { status?: number } = {}) {
     });
 }
 
-describe("MemoryGate client", () => {
+describe("Agentflow client", () => {
   it("requires an apiKey", () => {
-    expect(() => new MemoryGate({} as never)).toThrow(GovernanceError);
+    expect(() => new Agentflow({} as never)).toThrow(GovernanceError);
   });
 
   it("returns a Decision from an allow", async () => {
-    const mg = new MemoryGate({
+    const mg = new Agentflow({
       apiKey: "mg_test",
       defaultAgentId: "agent_x",
       fetch: fakeFetch(mockDecision("allow")) as unknown as typeof fetch,
@@ -54,7 +54,7 @@ describe("MemoryGate client", () => {
   });
 
   it("returns the modified payload on modify", async () => {
-    const mg = new MemoryGate({
+    const mg = new Agentflow({
       apiKey: "mg_test",
       defaultAgentId: "agent_x",
       fetch: fakeFetch(mockDecision("modify")) as unknown as typeof fetch,
@@ -65,7 +65,7 @@ describe("MemoryGate client", () => {
   });
 
   it("guard() raises PermissionDenied on block", async () => {
-    const mg = new MemoryGate({
+    const mg = new Agentflow({
       apiKey: "mg_test",
       defaultAgentId: "agent_x",
       fetch: fakeFetch(mockDecision("block")) as unknown as typeof fetch,
@@ -76,7 +76,7 @@ describe("MemoryGate client", () => {
   });
 
   it("guard() raises HumanApprovalRequired on escalate", async () => {
-    const mg = new MemoryGate({
+    const mg = new Agentflow({
       apiKey: "mg_test",
       defaultAgentId: "agent_x",
       fetch: fakeFetch(mockDecision("escalate")) as unknown as typeof fetch,
@@ -87,7 +87,7 @@ describe("MemoryGate client", () => {
   });
 
   it("wraps fetch errors in NetworkError", async () => {
-    const mg = new MemoryGate({
+    const mg = new Agentflow({
       apiKey: "mg_test",
       defaultAgentId: "agent_x",
       fetch: (async () => {
@@ -98,7 +98,7 @@ describe("MemoryGate client", () => {
   });
 
   it("requires an agentId", async () => {
-    const mg = new MemoryGate({
+    const mg = new Agentflow({
       apiKey: "mg_test",
       fetch: fakeFetch(mockDecision("allow")) as unknown as typeof fetch,
     });

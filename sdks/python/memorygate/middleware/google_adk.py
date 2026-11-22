@@ -1,14 +1,14 @@
 """Google Agent Development Kit (ADK) integration.
 
 Google ADK models each tool as a callable exposed to a `LlmAgent`. This
-middleware wraps every callable so MemoryGate evaluates the call before it
+middleware wraps every callable so Agentflow evaluates the call before it
 reaches the tool.
 
 Example::
 
     from google.adk.agents import LlmAgent
-    from memorygate import Client
-    from memorygate.middleware.google_adk import governed
+    from agentflow import Client
+    from agentflow.middleware.google_adk import governed
 
     mg = Client(api_key="mg_...")
 
@@ -44,12 +44,12 @@ def _wrap_callable(fn: Callable[..., Any], *, mg: Client, agent_id: str, name: s
         if d.decision == "escalate":
             raise HumanApprovalRequired(d.id, d.reason)
         raise PermissionDenied(d.reason, decision_id=d.id, policy_name=d.policy_name)
-    wrapped.__memorygate__ = True  # type: ignore[attr-defined]
+    wrapped.__agentflow__ = True  # type: ignore[attr-defined]
     return wrapped
 
 
 def governed(agent: Any, *, mg: Client, agent_id: str) -> Any:
-    """Wrap every tool attached to a Google ADK agent through MemoryGate.
+    """Wrap every tool attached to a Google ADK agent through Agentflow.
 
     ADK stores tools either on ``.tools`` (list of callables) or on
     ``.tool_registry`` — we handle both. The agent is mutated in place and
@@ -58,13 +58,13 @@ def governed(agent: Any, *, mg: Client, agent_id: str) -> Any:
     tools = getattr(agent, "tools", None)
     if isinstance(tools, list):
         for i, t in enumerate(tools):
-            if callable(t) and not getattr(t, "__memorygate__", False):
+            if callable(t) and not getattr(t, "__agentflow__", False):
                 tools[i] = _wrap_callable(t, mg=mg, agent_id=agent_id,
                                           name=getattr(t, "__name__", f"tool_{i}"))
     registry = getattr(agent, "tool_registry", None)
     if registry is not None and hasattr(registry, "items"):
         for name, t in list(registry.items()):
-            if callable(t) and not getattr(t, "__memorygate__", False):
+            if callable(t) and not getattr(t, "__agentflow__", False):
                 registry[name] = _wrap_callable(t, mg=mg, agent_id=agent_id, name=name)
     return agent
 

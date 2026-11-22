@@ -1,13 +1,13 @@
 """LangGraph integration.
 
-Wrap any tool node so that every invocation is evaluated by MemoryGate first.
+Wrap any tool node so that every invocation is evaluated by Agentflow first.
 Blocks and escalations short-circuit the graph and set `state["governance"]`.
 
 Example::
 
     from langgraph.graph import StateGraph
-    from memorygate import Client
-    from memorygate.middleware.langgraph import governed_node
+    from agentflow import Client
+    from agentflow.middleware.langgraph import governed_node
 
     mg = Client(api_key="mg_...")
 
@@ -49,7 +49,7 @@ def governed_node(
     on_block: Optional[Callable[[Dict[str, Any], Decision], Dict[str, Any]]] = None,
     on_escalate: Optional[Callable[[Dict[str, Any], Decision], Dict[str, Any]]] = None,
 ) -> Callable[[Dict[str, Any]], Dict[str, Any]]:
-    """Return a LangGraph node function that is governed by MemoryGate.
+    """Return a LangGraph node function that is governed by Agentflow.
 
     The returned callable is a drop-in replacement for `inner`. It:
       1. Calls ``mg.evaluate(...)`` with fields extracted from state.
@@ -57,7 +57,7 @@ def governed_node(
       3. On ``modify`` — invokes the inner node with the redacted payload.
       4. On ``block`` — returns ``{"halt": True, "governance": {...}}``.
       5. On ``escalate`` — returns ``{"halt": True, "governance": {...}}`` and
-         records the escalation in MemoryGate for a human to approve.
+         records the escalation in Agentflow for a human to approve.
 
     ``on_block`` / ``on_escalate`` let callers override the halt behaviour.
     """

@@ -1,7 +1,7 @@
 import { Decision, DecisionResponse } from "./models.js";
 import { GovernanceError, NetworkError, UnknownAgent } from "./errors.js";
 
-const DEFAULT_BASE_URL = "https://api.memorygate.dev";
+const DEFAULT_BASE_URL = "https://api.agentflow.ai";
 const DEFAULT_TIMEOUT = 5000;
 const SDK_VERSION = "0.4.0";
 
@@ -25,9 +25,9 @@ export interface KillSwitchActionInput {
 }
 
 export interface ClientOptions {
-  /** MemoryGate API key. Falls back to `MEMORYGATE_API_KEY` env. */
+  /** Agentflow API key. Falls back to `AGENTFLOW_API_KEY` env. */
   apiKey?: string;
-  /** Runtime URL. Defaults to https://api.memorygate.dev or `MEMORYGATE_URL`. */
+  /** Runtime URL. Defaults to https://api.agentflow.ai or `AGENTFLOW_URL`. */
   baseUrl?: string;
   /** Request timeout in milliseconds. Defaults to 5000. */
   timeoutMs?: number;
@@ -38,12 +38,12 @@ export interface ClientOptions {
 }
 
 /**
- * MemoryGate client for Node 18+, Deno, Bun and modern browsers.
+ * Agentflow client for Node 18+, Deno, Bun and modern browsers.
  *
  * ```ts
- * import { MemoryGate } from "@memorygate/sdk";
+ * import { Agentflow } from "agentflow-sdk";
  *
- * const mg = new MemoryGate({ apiKey: process.env.MG_KEY });
+ * const mg = new Agentflow({ apiKey: process.env.MG_KEY });
  *
  * const d = await mg.evaluate({
  *   agentId:  "agent_crm_copilot",
@@ -57,7 +57,7 @@ export interface ClientOptions {
  * else           throw d.toException();
  * ```
  */
-export class MemoryGate {
+export class Agentflow {
   public readonly baseUrl: string;
   public readonly defaultAgentId?: string;
 
@@ -69,15 +69,15 @@ export class MemoryGate {
     const apiKey =
       opts.apiKey ??
       (typeof process !== "undefined"
-        ? process.env?.MEMORYGATE_API_KEY
+        ? process.env?.AGENTFLOW_API_KEY
         : undefined);
     if (!apiKey) {
       throw new GovernanceError(
-        "Missing apiKey. Pass apiKey=... or set MEMORYGATE_API_KEY.",
+        "Missing apiKey. Pass apiKey=... or set AGENTFLOW_API_KEY.",
       );
     }
     const envBase =
-      typeof process !== "undefined" ? process.env?.MEMORYGATE_URL : undefined;
+      typeof process !== "undefined" ? process.env?.AGENTFLOW_URL : undefined;
     this.baseUrl = (opts.baseUrl ?? envBase ?? DEFAULT_BASE_URL).replace(
       /\/$/,
       "",
@@ -85,7 +85,7 @@ export class MemoryGate {
     this.headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${apiKey}`,
-      "User-Agent": `memorygate-node/${SDK_VERSION}`,
+      "User-Agent": `agentflow-node/${SDK_VERSION}`,
     };
     this.timeoutMs = opts.timeoutMs ?? DEFAULT_TIMEOUT;
     this._fetch = opts.fetch ?? fetch;
@@ -95,7 +95,7 @@ export class MemoryGate {
   /**
    * Evaluate one agent action against the tenant's policy graph.
    * Returns a {@link Decision}. Never throws on `block` / `escalate` —
-   * inspect `.allowed` / `.effect` or use {@link MemoryGate.guard} instead.
+   * inspect `.allowed` / `.effect` or use {@link Agentflow.guard} instead.
    */
   async evaluate(input: EvaluateInput): Promise<Decision> {
     const agentId = input.agentId ?? this.defaultAgentId;

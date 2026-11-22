@@ -1,10 +1,10 @@
-# MemoryOS — EmberGround 1-Hour Demo Runbook
+# Agentflow.ai — EmberGround 1-Hour Demo Runbook
 
 ## The problem
 AI agents are moving from answering questions to taking actions: reading customer data, modifying records, deploying software, and initiating financial operations. Authentication answers **who** the agent is; it does not decide whether a specific action is safe or permitted **right now**.
 
 ## The solution
-MemoryOS is a runtime governance control plane:
+Agentflow.ai is a runtime governance control plane:
 
 **Identity → Risk → Policy → Effect → Audit**
 

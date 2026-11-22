@@ -1,7 +1,7 @@
 {
-  "name": "memoryos-sdk",
+  "name": "agentflow-sdk",
   "version": "0.4.0",
-  "description": "Runtime governance for autonomous AI agents. Zero-trust decision layer with typed middleware for LangGraph, OpenAI Agents SDK, CrewAI, Google ADK, and MCP.",
+  "description": "Runtime governance for autonomous AI agents. Zero-trust decision layer by Agentflow.ai with typed middleware for LangGraph, OpenAI Agents SDK, CrewAI, Google ADK, and MCP.",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
@@ -78,22 +78,22 @@
     "sdk"
   ],
   "author": {
-    "name": "MemoryOS",
-    "url": "https://github.com/c0ntr1butr/MemoryOS"
+    "name": "Agentflow.ai",
+    "url": "https://github.com/Embergroundagents/Agentflow.ai"
   },
   "license": "Apache-2.0",
-  "homepage": "https://github.com/c0ntr1butr/MemoryOS#readme",
+  "homepage": "https://github.com/Embergroundagents/Agentflow.ai#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/c0ntr1butr/MemoryOS.git",
+    "url": "git+https://github.com/Embergroundagents/Agentflow.ai.git",
     "directory": "sdks/typescript"
   },
   "bugs": {
-    "url": "https://github.com/c0ntr1butr/MemoryOS/issues"
+    "url": "https://github.com/Embergroundagents/Agentflow.ai/issues"
   },
   "funding": {
     "type": "github",
-    "url": "https://github.com/sponsors/c0ntr1butr"
+    "url": "https://github.com/sponsors/Embergroundagents"
   },
   "engines": {
     "node": ">=18"

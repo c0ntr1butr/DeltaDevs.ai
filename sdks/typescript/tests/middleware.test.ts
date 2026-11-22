@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { MemoryGate } from "../src/index.js";
+import { Agentflow } from "../src/index.js";
 import { governedNode } from "../src/middleware/langgraph.js";
 import { governed as governedOpenAI } from "../src/middleware/openai-agents.js";
 import { governCrew } from "../src/middleware/crewai.js";
@@ -7,7 +7,7 @@ import { governed as governedAdk } from "../src/middleware/google-adk.js";
 import { governMcp, type JsonRpcRequest } from "../src/middleware/mcp.js";
 
 function mockClient(effect: "allow" | "block" | "modify" | "escalate", modifiedPayload: Record<string, unknown> | null = null) {
-  return new MemoryGate({
+  return new Agentflow({
     apiKey: "mg_test",
     fetch: (async () =>
       new Response(

@@ -1,5 +1,5 @@
 {
-  "name": "MemoryOS — Agent Decision Router",
+  "name": "Agentflow.ai — Agent Decision Router",
   "nodes": [
     {
       "parameters": {
@@ -9,7 +9,7 @@
         "options": {}
       },
       "id": "memoryos-webhook",
-      "name": "MemoryOS Decision Webhook",
+      "name": "Agentflow.ai Decision Webhook",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [240, 300],
@@ -106,7 +106,7 @@
     }
   ],
   "connections": {
-    "MemoryOS Decision Webhook": {"main": [[{"node": "Route by Governance Effect", "type": "main", "index": 0}]]},
+    "Agentflow.ai Decision Webhook": {"main": [[{"node": "Route by Governance Effect", "type": "main", "index": 0}]]},
     "Route by Governance Effect": {"main": [
       [{"node": "BLOCK → Security Alert", "type": "main", "index": 0}],
       [{"node": "ESCALATE → Human Review", "type": "main", "index": 0}],

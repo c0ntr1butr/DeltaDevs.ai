@@ -1,21 +1,21 @@
 /**
- * @memorygate/sdk — Runtime governance for autonomous AI agents.
+ * agentflow-sdk — Runtime governance for autonomous AI agents.
  *
- *   npm install @memorygate/sdk
+ *   npm install agentflow-sdk
  *
- *   import { MemoryGate } from "@memorygate/sdk";
- *   const mg = new MemoryGate({ apiKey: process.env.MG_KEY });
+ *   import { Agentflow } from "agentflow-sdk";
+ *   const mg = new Agentflow({ apiKey: process.env.MG_KEY });
  *   const d  = await mg.guard({ resource: "customers.read", agentId: "..." });
  *
  * Framework middleware ships under sub-paths:
- *   `@memorygate/sdk/middleware/langgraph`
- *   `@memorygate/sdk/middleware/openai-agents`
- *   `@memorygate/sdk/middleware/crewai`
- *   `@memorygate/sdk/middleware/google-adk`
- *   `@memorygate/sdk/middleware/mcp`
+ *   `agentflow-sdk/middleware/langgraph`
+ *   `agentflow-sdk/middleware/openai-agents`
+ *   `agentflow-sdk/middleware/crewai`
+ *   `agentflow-sdk/middleware/google-adk`
+ *   `agentflow-sdk/middleware/mcp`
  */
-export { MemoryGate } from "./client.js";
-export { MemoryGate as MemoryOS } from "./client.js";
+export { Agentflow } from "./client.js";
+export { Agentflow as Agentflow } from "./client.js";
 export type {
   ClientOptions,
   EvaluateInput,
@@ -37,4 +37,4 @@ export {
   HumanApprovalRequired,
 } from "./errors.js";
 
-export default { name: "memoryos-sdk", version: "0.4.0" };
+export default { name: "agentflow-sdk", version: "0.4.0" };

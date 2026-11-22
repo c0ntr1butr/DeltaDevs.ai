@@ -1,31 +1,31 @@
 <div align="center">
 
-# `memoryos-sdk`
+# `agentflow-sdk`
 
 **Runtime governance for autonomous AI agents.**
 _Zero-trust decisions in milliseconds — for every LangGraph node, OpenAI Agents tool,
 CrewAI task, Google ADK action, and MCP call._
 
-[![npm version](https://img.shields.io/npm/v/memoryos-sdk?color=%2306b6d4&label=npm)](https://www.npmjs.com/package/memoryos-sdk)
-[![npm downloads](https://img.shields.io/npm/dw/memoryos-sdk?color=%2306b6d4)](https://www.npmjs.com/package/memoryos-sdk)
-[![CI status](https://img.shields.io/github/actions/workflow/status/c0ntr1butr/MemoryOS/sdk-ci.yml?branch=main&label=CI)](https://github.com/c0ntr1butr/MemoryOS/actions/workflows/sdk-ci.yml)
+[![npm version](https://img.shields.io/npm/v/agentflow-sdk?color=%2306b6d4&label=npm)](https://www.npmjs.com/package/agentflow-sdk)
+[![npm downloads](https://img.shields.io/npm/dw/agentflow-sdk?color=%2306b6d4)](https://www.npmjs.com/package/agentflow-sdk)
+[![CI status](https://img.shields.io/github/actions/workflow/status/c0ntr1butr/Agentflow.ai/sdk-ci.yml?branch=main&label=CI)](https://github.com/c0ntr1butr/Agentflow.ai/actions/workflows/sdk-ci.yml)
 [![npm provenance](https://img.shields.io/badge/provenance-verified-06b6d4)](https://docs.npmjs.com/generating-provenance-statements)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Node](https://img.shields.io/node/v/memoryos-sdk?color=%2306b6d4)](https://nodejs.org/)
-[![Apache 2.0](https://img.shields.io/npm/l/memoryos-sdk?color=%2306b6d4)](./LICENSE)
-[![Bundle size](https://img.shields.io/bundlephobia/minzip/memoryos-sdk?label=bundle&color=%2306b6d4)](https://bundlephobia.com/package/memoryos-sdk)
+[![Node](https://img.shields.io/node/v/agentflow-sdk?color=%2306b6d4)](https://nodejs.org/)
+[![Apache 2.0](https://img.shields.io/npm/l/agentflow-sdk?color=%2306b6d4)](./LICENSE)
+[![Bundle size](https://img.shields.io/bundlephobia/minzip/agentflow-sdk?label=bundle&color=%2306b6d4)](https://bundlephobia.com/package/agentflow-sdk)
 
-[Website](https://memoryos.dev) · [Docs](https://memoryos.dev/docs) · [Playground](https://memoryos.dev/playground) · [Python SDK](https://github.com/c0ntr1butr/MemoryOS/tree/main/sdks/python) · [Changelog](./CHANGELOG.md)
+[Website](https://memoryos.dev) · [Docs](https://memoryos.dev/docs) · [Playground](https://memoryos.dev/playground) · [Python SDK](https://github.com/c0ntr1butr/Agentflow.ai/tree/main/sdks/python) · [Changelog](./CHANGELOG.md)
 
 </div>
 
 ---
 
-## What is MemoryOS?
+## What is Agentflow.ai?
 
-MemoryOS is the **runtime infrastructure layer for autonomous AI**. Every time one
+Agentflow.ai is the **runtime infrastructure layer for autonomous AI**. Every time one
 of your agents wants to read a customer record, hit a payments API, deploy code,
-or call a tool, it asks the MemoryOS runtime first:
+or call a tool, it asks the Agentflow.ai runtime first:
 
 > _"Given who this agent is, what it's trying to do, and the risk of doing it —
 > should I allow, block, modify, or escalate?"_
@@ -36,7 +36,7 @@ first-class objects with history), and **auditable** (a signed record of every
 decision is emitted for your SIEM).
 
 This package is the TypeScript / Node client. There's also a Python SDK
-([`pip install memorygate`](https://github.com/c0ntr1butr/MemoryOS/tree/main/sdks/python))
+([`pip install memorygate`](https://github.com/c0ntr1butr/Agentflow.ai/tree/main/sdks/python))
 and a plain REST API.
 
 ---
@@ -64,10 +64,10 @@ and a plain REST API.
 ## Installation
 
 ```bash
-npm install memoryos-sdk
-# or: yarn add memoryos-sdk
-# or: pnpm add memoryos-sdk
-# or: bun add memoryos-sdk
+npm install agentflow-sdk
+# or: yarn add agentflow-sdk
+# or: pnpm add agentflow-sdk
+# or: bun add agentflow-sdk
 ```
 
 Node ≥ 18 (uses native `fetch` + `AbortController`). Also works in Deno, Bun,
@@ -82,9 +82,9 @@ self-hosted install.
 ## Quickstart
 
 ```ts
-import { MemoryOS } from "memoryos-sdk";
+import { Agentflow.ai } from "agentflow-sdk";
 
-const mg = new MemoryOS({ apiKey: process.env.MEMORYOS_API_KEY });
+const mg = new Agentflow.ai({ apiKey: process.env.AGENTFLOW_API_KEY });
 
 const decision = await mg.evaluate({
   agentId:  "agent_crm_copilot",
@@ -122,9 +122,9 @@ await bank.transfer(d.effectivePayload!);   // safe: allowed or modified.
 ## Configuration
 
 ```ts
-new MemoryOS({
-  apiKey:         process.env.MEMORYOS_API_KEY,   // required
-  baseUrl:        "https://api.memorygate.dev",   // or point at self-hosted
+new Agentflow.ai({
+  apiKey:         process.env.AGENTFLOW_API_KEY,   // required
+  baseUrl:        "https://api.agentflow.ai",   // or point at self-hosted
   timeoutMs:      5000,                           // per-request timeout
   defaultAgentId: "agent_default",                // skip agentId on every call
   fetch:          globalThis.fetch,               // inject for tests / Deno
@@ -135,19 +135,19 @@ Everything is env-driven if you don't pass options:
 
 | Option           | Env var                 | Default                        |
 |------------------|-------------------------|--------------------------------|
-| `apiKey`         | `MEMORYGATE_API_KEY`    | _(required)_                   |
-| `baseUrl`        | `MEMORYGATE_URL`        | `https://api.memorygate.dev`   |
+| `apiKey`         | `AGENTFLOW_API_KEY`    | _(required)_                   |
+| `baseUrl`        | `AGENTFLOW_URL`        | `https://api.agentflow.ai`   |
 | `timeoutMs`      | —                       | `5000`                         |
 
 > **Note:** the env var names use the internal `MEMORYGATE_` prefix (they map to
-> the Python SDK). `MemoryOS` is the brand; both `MemoryOS` and `MemoryGate` are
+> the Python SDK). `Agentflow.ai` is the brand; both `Agentflow.ai` and `Agentflow` are
 > exported classes and behave identically.
 
 ---
 
 ## API reference
 
-### `new MemoryOS(options)`
+### `new Agentflow.ai(options)`
 
 Create a client. Throws `GovernanceError` if `apiKey` is missing.
 
@@ -197,12 +197,12 @@ don't import.
 
 ```ts
 import { StateGraph } from "@langchain/langgraph";
-import { MemoryOS }              from "memoryos-sdk";
-import { governedNode }          from "memoryos-sdk/middleware/langgraph";
+import { Agentflow.ai }              from "agentflow-sdk";
+import { governedNode }          from "agentflow-sdk/middleware/langgraph";
 
 interface State { customerId: number; op: "read" | "write"; userTask: string; }
 
-const mg = new MemoryOS({ apiKey: process.env.MG_KEY });
+const mg = new Agentflow.ai({ apiKey: process.env.MG_KEY });
 
 const guardedCrmNode = governedNode<State>(mg, "agent_crm", {
   resource: (s) => `customers.${s.op}`,
@@ -221,10 +221,10 @@ graph.addNode("crm", guardedCrmNode);
 
 ```ts
 import { Agent }    from "@openai/agents";     // or @openai/agents-sdk
-import { MemoryOS } from "memoryos-sdk";
-import { governed } from "memoryos-sdk/middleware/openai-agents";
+import { Agentflow.ai } from "agentflow-sdk";
+import { governed } from "agentflow-sdk/middleware/openai-agents";
 
-const mg = new MemoryOS({ apiKey: process.env.MG_KEY });
+const mg = new Agentflow.ai({ apiKey: process.env.MG_KEY });
 
 const agent = new Agent({
   name: "finance-copilot",
@@ -238,10 +238,10 @@ governed(mg, "agent_finance", agent);   // wraps every tool in place
 
 ```ts
 import { Crew, Agent } from "crewai-ts";
-import { MemoryOS }    from "memoryos-sdk";
-import { governCrew }  from "memoryos-sdk/middleware/crewai";
+import { Agentflow.ai }    from "agentflow-sdk";
+import { governCrew }  from "agentflow-sdk/middleware/crewai";
 
-const mg = new MemoryOS({ apiKey: process.env.MG_KEY });
+const mg = new Agentflow.ai({ apiKey: process.env.MG_KEY });
 
 const crew = new Crew({ /* ... */ });
 governCrew(mg, "agent_research", crew);
@@ -251,24 +251,24 @@ governCrew(mg, "agent_research", crew);
 
 ```ts
 import { LlmAgent } from "@google/adk";
-import { MemoryOS } from "memoryos-sdk";
-import { governed } from "memoryos-sdk/middleware/google-adk";
+import { Agentflow.ai } from "agentflow-sdk";
+import { governed } from "agentflow-sdk/middleware/google-adk";
 
-const mg = new MemoryOS({ apiKey: process.env.MG_KEY });
+const mg = new Agentflow.ai({ apiKey: process.env.MG_KEY });
 
 governed(mg, "agent_support", agent);
 ```
 
 ### Model Context Protocol (MCP)
 
-Route every `tools/call` through MemoryOS before it hits the real MCP server.
+Route every `tools/call` through Agentflow.ai before it hits the real MCP server.
 Blocks return JSON-RPC error `-32001`, escalations return `-32002`.
 
 ```ts
-import { MemoryOS }  from "memoryos-sdk";
-import { governMcp } from "memoryos-sdk/middleware/mcp";
+import { Agentflow.ai }  from "agentflow-sdk";
+import { governMcp } from "agentflow-sdk/middleware/mcp";
 
-const mg = new MemoryOS({ apiKey: process.env.MG_KEY });
+const mg = new Agentflow.ai({ apiKey: process.env.MG_KEY });
 
 const proxy = governMcp(mg, "agent_mcp", {
   forward: async (msg) => realMcpClient.send(msg),
@@ -286,12 +286,12 @@ class:
 
 ```ts
 import {
-  MemoryOS,
+  Agentflow.ai,
   PermissionDenied,
   HumanApprovalRequired,
   NetworkError,
   UnknownAgent,
-} from "memoryos-sdk";
+} from "agentflow-sdk";
 
 try {
   await mg.guard({ /* ... */ });
@@ -329,8 +329,8 @@ try {
 
 | Var                   | Purpose                                       |
 |-----------------------|-----------------------------------------------|
-| `MEMORYGATE_API_KEY`  | Falls back if `apiKey` is not passed.         |
-| `MEMORYGATE_URL`      | Point at a self-hosted runtime.               |
+| `AGENTFLOW_API_KEY`  | Falls back if `apiKey` is not passed.         |
+| `AGENTFLOW_URL`      | Point at a self-hosted runtime.               |
 
 ---
 
@@ -351,12 +351,12 @@ tree-shaking works in every modern bundler.
 
 ## Contributing
 
-- Repo: [c0ntr1butr/MemoryOS](https://github.com/c0ntr1butr/MemoryOS)
-- Issues: [github.com/c0ntr1butr/MemoryOS/issues](https://github.com/c0ntr1butr/MemoryOS/issues)
+- Repo: [c0ntr1butr/Agentflow.ai](https://github.com/c0ntr1butr/Agentflow.ai)
+- Issues: [github.com/c0ntr1butr/Agentflow.ai/issues](https://github.com/c0ntr1butr/Agentflow.ai/issues)
 - Local dev:
   ```bash
-  git clone https://github.com/c0ntr1butr/MemoryOS
-  cd MemoryOS/sdks/typescript
+  git clone https://github.com/c0ntr1butr/Agentflow.ai
+  cd Agentflow.ai/sdks/typescript
   yarn install
   yarn verify           # typecheck + test + example-typecheck + build
   ```
@@ -369,7 +369,7 @@ verify on Node 18/20/22.
 
 ## License
 
-[Apache 2.0](./LICENSE) © 2026 MemoryOS.
+[Apache 2.0](./LICENSE) © 2026 Agentflow.ai.
 
 
 ## RuntimeOS Kill Switch

@@ -2,7 +2,7 @@
 
 **DeltaDevs | Build with Bob • Track 3**
 
-RuntimeOS is an external governance and enforcement layer for multi-agent systems. The Kill Switch extension preserves the EmberGround Agentflow.ai / MemoryGate runtime foundation and adds agent-scoped incident detection, quarantine, action provenance and selective recovery.
+RuntimeOS is an external governance and enforcement layer for multi-agent systems. The Kill Switch extension preserves the EmberGround Agentflow.ai / Agentflow runtime foundation and adds agent-scoped incident detection, quarantine, action provenance and selective recovery.
 
 ## Original challenge statement
 
@@ -167,7 +167,7 @@ yarn build
 ## Project structure
 
 ```text
-MemoryOS/                    # Existing EmberGround product foundation (rebranded in console)
+Agentflow.ai/                    # Existing EmberGround product foundation (rebranded in console)
   backend/server.py          # Existing API + integrated Kill Switch routes
   frontend/src/pages/        # Existing console + new KillSwitch.jsx
   sdks/python/               # Existing Python SDK + adapters

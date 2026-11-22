@@ -1,6 +1,6 @@
-# MemoryOS — local development in VS Code
+# Agentflow.ai — local development in VS Code
 
-Extract the ZIP and open the `MemoryOS` folder in VS Code. The archive includes
+Extract the ZIP and open the `Agentflow.ai` folder in VS Code. The archive includes
 the React application, FastAPI backend, Python and TypeScript SDKs, tests,
 benchmarks, documentation, and GitHub workflows.
 
@@ -119,4 +119,4 @@ not add connector implementations.
 
 ### Memory provider
 
-Breeth provides persistent, intent-aware agent memory via its REST API. MemoryOS keeps tenant governance, policy decisions and audit records in MongoDB while Breeth stores/searches agent memory.
+Breeth provides persistent, intent-aware agent memory via its REST API. Agentflow.ai keeps tenant governance, policy decisions and audit records in MongoDB while Breeth stores/searches agent memory.

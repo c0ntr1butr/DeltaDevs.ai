@@ -1,6 +1,6 @@
-"""memorygate CLI — currently exposes the MCP proxy runner.
+"""agentflow CLI — currently exposes the MCP proxy runner.
 
-    memorygate mcp-proxy --upstream https://mcp.example.com \
+    agentflow mcp-proxy --upstream https://mcp.example.com \
         --api-key mg_... --agent-id agent_mcp --listen 0.0.0.0:7443
 """
 from __future__ import annotations
@@ -14,11 +14,11 @@ from .client import Client
 
 
 def _mcp_proxy(argv: List[str]) -> int:
-    ap = argparse.ArgumentParser(prog="memorygate mcp-proxy")
+    ap = argparse.ArgumentParser(prog="agentflow mcp-proxy")
     ap.add_argument("--upstream", required=True, help="Real MCP endpoint URL")
-    ap.add_argument("--api-key", required=True, help="MemoryGate API key (mg_...)")
-    ap.add_argument("--agent-id", required=True, help="Agent id registered in MemoryGate")
-    ap.add_argument("--base-url", default="https://api.memorygate.dev")
+    ap.add_argument("--api-key", required=True, help="Agentflow API key (mg_...)")
+    ap.add_argument("--agent-id", required=True, help="Agent id registered in Agentflow")
+    ap.add_argument("--base-url", default="https://api.agentflow.ai")
     ap.add_argument("--listen", default="0.0.0.0:7443")
     args = ap.parse_args(argv)
 
@@ -26,7 +26,7 @@ def _mcp_proxy(argv: List[str]) -> int:
     host, port = args.listen.rsplit(":", 1)
     mg = Client(api_key=args.api_key, base_url=args.base_url)
     proxy = MCPProxy(mg=mg, agent_id=args.agent_id, upstream=args.upstream)
-    print(f"memorygate mcp-proxy → {args.upstream}  |  listening on {host}:{port}", flush=True)
+    print(f"agentflow mcp-proxy → {args.upstream}  |  listening on {host}:{port}", flush=True)
     asyncio.run(proxy.serve(host=host, port=int(port)))
     return 0
 
@@ -34,7 +34,7 @@ def _mcp_proxy(argv: List[str]) -> int:
 def main(argv: Optional[List[str]] = None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
     if not argv or argv[0] in ("-h", "--help"):
-        print("Usage: memorygate <command>\n\nCommands:\n  mcp-proxy    Governance proxy for MCP servers")
+        print("Usage: agentflow <command>\n\nCommands:\n  mcp-proxy    Governance proxy for MCP servers")
         return 0
     cmd, rest = argv[0], argv[1:]
     if cmd == "mcp-proxy":

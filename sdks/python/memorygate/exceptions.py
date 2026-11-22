@@ -1,4 +1,4 @@
-"""Exceptions raised by the MemoryGate SDK."""
+"""Exceptions raised by the Agentflow SDK."""
 from __future__ import annotations
 
 from typing import Optional
@@ -9,7 +9,7 @@ class GovernanceError(Exception):
 
 
 class NetworkError(GovernanceError):
-    """Raised when the SDK cannot reach the MemoryGate runtime."""
+    """Raised when the SDK cannot reach the Agentflow runtime."""
 
 
 class UnknownAgent(GovernanceError):

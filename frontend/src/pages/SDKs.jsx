@@ -5,10 +5,10 @@ import { toast } from "sonner";
 import { Copy, Play, Code2 } from "lucide-react";
 
 const SNIPPETS = {
-  python: `# pip install memorygate
-from memorygate import Client
+  python: `# pip install agentflow
+from agentflow import Client
 
-mg = Client(api_key="mg_...")           # from your MemoryOS console
+mg = Client(api_key="mg_...")           # from your Agentflow.ai console
 
 decision = mg.evaluate(
     agent_id="agent_123",
@@ -27,10 +27,10 @@ elif decision.effect == "escalate":
 else:
     raise PermissionDenied(decision.reason)`,
 
-  typescript: `// npm i memoryos-sdk
-import { MemoryOS } from "memoryos-sdk";
+  typescript: `// npm i agentflow-sdk
+import { Agentflow.ai } from "agentflow-sdk";
 
-const mg = new MemoryOS({ apiKey: process.env.MG_KEY! });
+const mg = new Agentflow.ai({ apiKey: process.env.MG_KEY! });
 
 const decision = await mg.evaluate({
   agentId: "agent_123",
@@ -47,8 +47,8 @@ switch (decision.effect) {
   default:         throw new PermissionDenied(decision.reason);
 }`,
 
-  langgraph: `# pip install memorygate langgraph
-from memorygate import Client
+  langgraph: `# pip install agentflow langgraph
+from agentflow import Client
 from langgraph.graph import StateGraph
 
 mg = Client(api_key="mg_...")
@@ -70,7 +70,7 @@ graph = StateGraph(dict)
 graph.add_node("tool", governed_tool)
 graph.compile()`,
 
-  openai: `# pip install memorygate openai-agents
+  openai: `# pip install agentflow openai-agents
 from memorygate.middleware.openai_agents import governed
 from agents import Agent, Runner
 
@@ -84,7 +84,7 @@ result = Runner.run(mg_agent, "Summarize account 42 for me")
 # Every tool call inside the Agents SDK is routed through mg.evaluate()
 # before it reaches the tool implementation.`,
 
-  crewai: `# pip install memorygate crewai
+  crewai: `# pip install agentflow crewai
 from memorygate.middleware.crewai import GovernedCrew
 from crewai import Agent, Task, Crew
 
@@ -94,10 +94,10 @@ crew = GovernedCrew(
     api_key="mg_...",
 )
 
-crew.kickoff()   # tool executions are wrapped by MemoryOS transparently`,
+crew.kickoff()   # tool executions are wrapped by Agentflow.ai transparently`,
 
-  mcp: `# pip install memorygate mcp
-# MemoryOS ships an MCP proxy: place it in front of any MCP server and
+  mcp: `# pip install agentflow mcp
+# Agentflow.ai ships an MCP proxy: place it in front of any MCP server and
 # every tool call is evaluated against your policies before reaching the
 # real server. Zero code changes in the calling agent.
 
@@ -160,7 +160,7 @@ export default function SDKs() {
       <PageHeader
         eyebrow="Developers"
         title="SDKs & interactive docs"
-        subtitle="Drop MemoryOS into any agent framework in under 10 lines. Every example is copy-pasteable and production-shaped."
+        subtitle="Drop Agentflow.ai into any agent framework in under 10 lines. Every example is copy-pasteable and production-shaped."
         testid="sdks-header"
       />
 

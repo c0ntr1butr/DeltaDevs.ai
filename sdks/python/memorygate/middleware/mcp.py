@@ -1,22 +1,22 @@
 """MCP (Model Context Protocol) proxy.
 
 Any MCP client can point at this proxy instead of the real MCP server. Every
-``tools/call`` request is evaluated by MemoryGate. Blocked or escalated calls
+``tools/call`` request is evaluated by Agentflow. Blocked or escalated calls
 never touch the upstream server.
 
 Usage as a Python coroutine (embed in your own server)::
 
-    from memorygate import Client
-    from memorygate.middleware.mcp import MCPProxy
+    from agentflow import Client
+    from agentflow.middleware.mcp import MCPProxy
 
     mg = Client(api_key="mg_...")
     proxy = MCPProxy(mg=mg, agent_id="agent_mcp_gateway",
                      upstream="https://mcp.internal.example.com")
     await proxy.serve(host="0.0.0.0", port=7443)
 
-Or as a CLI (see ``memorygate.cli``)::
+Or as a CLI (see ``agentflow.cli``)::
 
-    memorygate mcp-proxy --upstream https://mcp.internal.example.com \
+    agentflow mcp-proxy --upstream https://mcp.internal.example.com \
         --api-key mg_... --agent-id agent_mcp_gateway --listen 0.0.0.0:7443
 """
 from __future__ import annotations
@@ -30,7 +30,7 @@ import httpx
 from ..client import Client
 from ..exceptions import PermissionDenied, HumanApprovalRequired
 
-log = logging.getLogger("memorygate.mcp")
+log = logging.getLogger("agentflow.mcp")
 
 
 class MCPProxy:

@@ -3,14 +3,14 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "memorygate"
+name = "agentflow"
 version = "0.1.0"
-description = "Runtime governance for autonomous AI agents. Framework-agnostic middleware that evaluates every agent action against identity, policy, context, and risk before it reaches your enterprise systems."
+description = "Runtime governance for autonomous AI agents by Agentflow.ai. Framework-agnostic middleware that evaluates every agent action against identity, policy, context, and risk before it reaches your enterprise systems."
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "Apache-2.0"}
-authors = [{name = "MemoryGate", email = "hello@memorygate.dev"}]
-keywords = ["ai", "governance", "agents", "security", "zero-trust", "langgraph", "crewai", "mcp"]
+authors = [{name = "Agentflow.ai", email = "hello@agentflow.ai"}]
+keywords = ["ai", "governance", "agents", "security", "zero-trust", "langgraph", "crewai", "mcp", "agentflow"]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
@@ -39,13 +39,13 @@ dev      = ["pytest", "pytest-asyncio", "ruff"]
 all      = ["langgraph>=0.2", "openai-agents>=0.0.6", "crewai>=0.60", "google-adk>=0.2", "mcp>=1.0"]
 
 [project.urls]
-Homepage      = "https://memorygate.dev"
-Documentation = "https://docs.memorygate.dev"
-Repository    = "https://github.com/memorygate/memorygate-python"
-Issues        = "https://github.com/memorygate/memorygate-python/issues"
+Homepage      = "https://agentflow.ai"
+Documentation = "https://docs.agentflow.ai"
+Repository    = "https://github.com/Embergroundagents/Agentflow.ai"
+Issues        = "https://github.com/Embergroundagents/Agentflow.ai/issues"
 
 [project.scripts]
-memorygate = "memorygate.cli:main"
+agentflow = "agentflow.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["."]

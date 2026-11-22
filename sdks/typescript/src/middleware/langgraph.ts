@@ -1,16 +1,16 @@
 /**
- * LangGraph middleware for MemoryGate.
+ * LangGraph middleware for Agentflow.
  *
  * Wraps a LangGraph node so its state transition passes through the
- * MemoryGate runtime first. Blocks / escalations halt the graph by
+ * Agentflow runtime first. Blocks / escalations halt the graph by
  * throwing; modified payloads are folded back into the state.
  *
  * ```ts
  * import { StateGraph } from "@langchain/langgraph";
- * import { MemoryGate } from "@memorygate/sdk";
- * import { governedNode } from "@memorygate/sdk/middleware/langgraph";
+ * import { Agentflow } from "agentflow-sdk";
+ * import { governedNode } from "agentflow-sdk/middleware/langgraph";
  *
- * const mg = new MemoryGate({ apiKey: process.env.MG_KEY });
+ * const mg = new Agentflow({ apiKey: process.env.MG_KEY });
  *
  * const guarded = governedNode(mg, "agent_crm", {
  *   resource: (state) => `customers.${state.op}`,
@@ -22,7 +22,7 @@
  * graph.addNode("crm", guarded);
  * ```
  */
-import type { MemoryGate } from "../client.js";
+import type { Agentflow } from "../client.js";
 
 export type StateExtractor<S, T> = (state: S) => T;
 
@@ -46,7 +46,7 @@ function resolve<S, T>(v: T | StateExtractor<S, T> | undefined, s: S, fallback: 
 }
 
 export function governedNode<S>(
-  mg: MemoryGate,
+  mg: Agentflow,
   agentId: string,
   cfg: GovernedNodeConfig<S>,
 ) {

@@ -5,17 +5,17 @@
  * server. Works two ways:
  *
  * 1. As a **JSON-RPC proxy handler**: give it an inbound RPC message, it
- *    evaluates via MemoryGate, and returns either the (possibly modified)
+ *    evaluates via Agentflow, and returns either the (possibly modified)
  *    forwarded response or an error object.
  *
  * 2. As a **middleware factory** you can drop into any MCP framework
  *    (mcp-typescript-sdk, `@modelcontextprotocol/sdk`, etc.).
  *
  * ```ts
- * import { MemoryGate } from "@memorygate/sdk";
- * import { governMcp } from "@memorygate/sdk/middleware/mcp";
+ * import { Agentflow } from "agentflow-sdk";
+ * import { governMcp } from "agentflow-sdk/middleware/mcp";
  *
- * const mg = new MemoryGate({ apiKey: process.env.MG_KEY });
+ * const mg = new Agentflow({ apiKey: process.env.MG_KEY });
  *
  * const proxy = governMcp(mg, "agent_mcp", {
  *   forward: async (msg) => await realMcpClient.send(msg),
@@ -24,7 +24,7 @@
  * // Then wire proxy(rpc) into your MCP transport.
  * ```
  */
-import type { MemoryGate } from "../client.js";
+import type { Agentflow } from "../client.js";
 
 export interface JsonRpcRequest {
   jsonrpc: "2.0";
@@ -57,7 +57,7 @@ const CODE_BLOCKED = -32001;
 const CODE_ESCALATED = -32002;
 
 export function governMcp(
-  mg: MemoryGate,
+  mg: Agentflow,
   agentId: string,
   opts: McpProxyOptions,
 ): (msg: JsonRpcRequest) => Promise<JsonRpcResponse> {
@@ -87,7 +87,7 @@ export function governMcp(
         id: msg.id ?? null,
         error: {
           code: CODE_BLOCKED,
-          message: decision.reason || "Blocked by MemoryGate policy",
+          message: decision.reason || "Blocked by Agentflow policy",
           data: { policyName: decision.policyName, decisionId: decision.id },
         },
       };

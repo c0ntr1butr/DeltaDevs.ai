@@ -2,19 +2,19 @@
  * OpenAI Agents SDK (JS) middleware.
  *
  * Wraps every tool on an `Agent` so its `.execute()` (or `.call()`) passes
- * through MemoryGate first. Non-allowed decisions raise; `modify` decisions
+ * through Agentflow first. Non-allowed decisions raise; `modify` decisions
  * replace the tool arguments with the redacted payload.
  *
  * ```ts
  * import { Agent } from "@openai/agents";           // or @openai/agents-sdk
- * import { MemoryGate } from "@memorygate/sdk";
- * import { governed } from "@memorygate/sdk/middleware/openai-agents";
+ * import { Agentflow } from "agentflow-sdk";
+ * import { governed } from "agentflow-sdk/middleware/openai-agents";
  *
- * const mg = new MemoryGate({ apiKey: process.env.MG_KEY });
+ * const mg = new Agentflow({ apiKey: process.env.MG_KEY });
  * governed(mg, "agent_finance", agent);   // mutates in place
  * ```
  */
-import type { MemoryGate } from "../client.js";
+import type { Agentflow } from "../client.js";
 
 interface ToolLike {
   name?: string;
@@ -47,7 +47,7 @@ function pickFn(t: ToolLike): [keyof ToolLike, (input: Record<string, unknown>) 
 }
 
 export function governed(
-  mg: MemoryGate,
+  mg: Agentflow,
   agentId: string,
   agent: AgentLike,
   opts: OpenAIAgentsOptions = {},

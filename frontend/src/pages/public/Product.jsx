@@ -32,7 +32,7 @@ const AUDIENCES = [
     points: [
       "Framework-agnostic middleware — LangGraph, OpenAI Agents SDK, CrewAI, Google ADK, MCP all work today.",
       "One API surface for every agent your team ships. Drop it in without rewriting tools.",
-      "Publish-your-own SDK line: `pip install memorygate` and `memoryos-sdk` semantic-versioned to 1.0.",
+      "Publish-your-own SDK line: `pip install agentflow` and `agentflow-sdk` semantic-versioned to 1.0.",
     ],
   },
   {
@@ -65,7 +65,7 @@ export default function Product() {
           One runtime. Every autonomous action. In front of everything you care about.
         </h1>
         <p className="text-neutral-400 text-lg mt-5 max-w-3xl leading-relaxed">
-          MemoryOS is a FastAPI runtime governance service backed by MongoDB for policy/audit state, with Breeth providing persistent agent memory. Your agents call
+          Agentflow.ai is a FastAPI runtime governance service backed by MongoDB for policy/audit state, with Breeth providing persistent agent memory. Your agents call
           <code className="font-mono-plex text-cyan-300 mx-1">mg.evaluate(...)</code>
           before every meaningful action. The runtime returns one of four effects —
           <span className="text-cyan-300"> allow</span>,
@@ -129,7 +129,7 @@ export default function Product() {
       {/* CTA */}
       <section className="max-w-[900px] mx-auto px-6 py-20 text-center">
         <h2 className="font-display text-4xl tracking-tight">
-          Ready to see MemoryOS on your own traffic?
+          Ready to see Agentflow.ai on your own traffic?
         </h2>
         <div className="mt-6 flex items-center justify-center gap-3">
           <Link to="/pilot" className="btn-primary flex items-center gap-2">Book a pilot</Link>

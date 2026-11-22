@@ -36,7 +36,7 @@ from pydantic import BaseModel, Field, EmailStr
 
 # ------------------------ setup ------------------------
 mongo_url = os.environ.get("MONGO_URL", "").strip()
-db_name = os.environ.get("DB_NAME", "memoryos")
+db_name = os.environ.get("DB_NAME", "agentflow")
 if mongo_url:
     client = AsyncIOMotorClient(mongo_url)
     db = client[db_name]
@@ -48,7 +48,7 @@ else:
     db = client[db_name]
     DB_MODE = "in-memory"
 
-JWT_SECRET = os.environ.get("JWT_SECRET", "memoryos-hackathon-dev-secret")
+JWT_SECRET = os.environ.get("JWT_SECRET", "agentflow-hackathon-dev-secret")
 JWT_ALGO = "HS256"
 
 ENVIRONMENT = os.environ.get("ENVIRONMENT", "development").lower()
@@ -79,15 +79,15 @@ def _cors_regex() -> Optional[str]:
     return "^(" + "|".join(parts) + ")$"
 
 app = FastAPI(
-    title="MemoryGate Runtime Governance API",
+    title="Agentflow.ai Runtime Governance API",
     version="0.2.0",
     description=(
         "Zero-trust runtime infrastructure for autonomous AI agents.\n\n"
         "Every autonomous action from your agents is evaluated against **identity, policy,\n"
         "context, and risk** — and returned as one of `allow` / `block` / `modify` /\n"
         "`escalate`.\n\n"
-        "This is the same API served at `https://api.memorygate.dev` and consumed by the\n"
-        "`memorygate` Python SDK and `@memorygate/sdk` TypeScript SDK.\n\n"
+        "This is the same API served at `https://api.agentflow.ai` and consumed by the\n"
+        "`agentflow` Python SDK and `agentflow-sdk` TypeScript SDK.\n\n"
         "- **Auth**: JWT via `POST /api/auth/login` — send `Authorization: Bearer <token>` or\n"
         "  rely on the `access_token` httpOnly cookie set by the login response.\n"
         "- **Rate limits**: per-IP sliding window. `/api/evaluate` is the hot path (6000/min).\n"
@@ -929,7 +929,7 @@ async def _ensure_public_demo() -> str:
     """Idempotently seed the public playground tenant with sample agents + policies."""
     org = await db.orgs.find_one({"id": PUBLIC_ORG_ID})
     if not org:
-        await db.orgs.insert_one({"id": PUBLIC_ORG_ID, "name": "MemoryGate Public Playground",
+        await db.orgs.insert_one({"id": PUBLIC_ORG_ID, "name": "Agentflow.ai Public Playground",
                                   "created_at": now_utc().isoformat(),
                                   "api_key": "sk_gov_public_readonly"})
     if await db.agents.count_documents({"org_id": PUBLIC_ORG_ID}) == 0:
@@ -1067,7 +1067,7 @@ async def _notify_lead(lead: dict) -> None:
         if not admin:
             return
         hooks = await db.webhooks.find({"org_id": admin["org_id"], "enabled": True}, {"_id": 0}).to_list(20)
-        summary = (f"🚀 New MemoryGate pilot request: *{lead['company']}* — "
+        summary = (f"🚀 New Agentflow.ai pilot request: *{lead['company']}* — "
                    f"{lead['name']} <{lead['email']}> — team {lead.get('team_size', '?')} "
                    f"agents {lead.get('agent_count', '?')} timeline {lead.get('timeline', '?')}")
         for wh in hooks:
@@ -1258,7 +1258,7 @@ async def test_webhook(wid: str, user=Depends(require_role("admin"))):
         raise HTTPException(404, "Not found")
     ok, status_code = await _post_webhook(wh, {
         "type": "test",
-        "message": "MemoryGate test event from " + user["email"],
+        "message": "Agentflow.ai test event from " + user["email"],
         "ts": now_utc().isoformat(),
     })
     return {"ok": ok, "status": status_code}
@@ -1275,7 +1275,7 @@ def _format_webhook_payload(wh: dict, decision: dict) -> dict:
                 "summary": title, "themeColor": "FF3366",
                 "sections": [{"activityTitle": title, "text": detail}]}
     if wh["kind"] == "pagerduty":
-        return {"payload": {"summary": title, "severity": "warning", "source": "MemoryGate",
+        return {"payload": {"summary": title, "severity": "warning", "source": "Agentflow.ai",
                             "custom_details": {"reason": d["reason"], "risk": d["risk_score"]}},
                 "routing_key": "PLACEHOLDER", "event_action": "trigger"}
     return {"event": "decision", "decision": d}
@@ -1284,7 +1284,7 @@ def _format_webhook_payload(wh: dict, decision: dict) -> dict:
 async def _post_webhook(wh: dict, body: dict) -> (bool, int):
     try:
         async with httpx.AsyncClient(timeout=5.0) as c:
-            r = await c.post(wh["url"], json=body, headers={"User-Agent": "MemoryGate/1.0"})
+            r = await c.post(wh["url"], json=body, headers={"User-Agent": "Agentflow.ai/1.0"})
             return (200 <= r.status_code < 300), r.status_code
     except Exception as e:
         logger.warning("webhook delivery failed for %s: %s", wh.get("id"), e)
@@ -1639,12 +1639,12 @@ except Exception:  # pragma: no cover
 
 DODO_PACKAGES: Dict[str, Dict[str, Any]] = {
     "growth_monthly": {
-        "name": "MemoryOS Growth (monthly)",
+        "name": "Agentflow.ai Growth (monthly)",
         "tier": "growth",
         "product_env": "DODO_GROWTH_MONTHLY_PRODUCT_ID",
     },
     "growth_annual": {
-        "name": "MemoryOS Growth (annual)",
+        "name": "Agentflow.ai Growth (annual)",
         "tier": "growth",
         "product_env": "DODO_GROWTH_ANNUAL_PRODUCT_ID",
     },
@@ -1694,7 +1694,7 @@ async def create_dodo_checkout(body: DodoCheckoutIn, request: Request):
         session = await client.checkout_sessions.create(
             product_cart=[{"product_id": product_id, "quantity": 1}],
             customer=(
-                {"email": str(body.email), "name": body.company or "MemoryOS customer"}
+                {"email": str(body.email), "name": body.company or "Agentflow.ai customer"}
                 if body.email else None
             ),
             return_url=success_url,
@@ -1883,7 +1883,7 @@ async def memory_search(body: MemorySearchIn, request: Request):
 # ------------------------ health ------------------------
 @api.get("/")
 async def root():
-    return {"ok": True, "service": "MemoryGate Runtime Governance"}
+    return {"ok": True, "service": "Agentflow.ai Runtime Governance"}
 
 
 # ------------------------ startup ------------------------

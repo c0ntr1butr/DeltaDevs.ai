@@ -1,4 +1,4 @@
-# MemoryGate Benchmarks
+# Agentflow Benchmarks
 
 Real, reproducible latency and throughput numbers. Run yourself with:
 

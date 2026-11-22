@@ -1,7 +1,7 @@
 /**
- * MemoryGate SDK errors.
+ * Agentflow SDK errors.
  *
- * Every error raised by `@memorygate/sdk` inherits from `GovernanceError`,
+ * Every error raised by `agentflow-sdk` inherits from `GovernanceError`,
  * so a single `catch (e: unknown)` block can differentiate by class.
  */
 export class GovernanceError extends Error {
@@ -13,7 +13,7 @@ export class GovernanceError extends Error {
   }
 }
 
-/** Raised when the SDK cannot reach the MemoryGate runtime (timeout / DNS / TLS). */
+/** Raised when the SDK cannot reach the Agentflow runtime (timeout / DNS / TLS). */
 export class NetworkError extends GovernanceError {
   constructor(message: string) {
     super(message);

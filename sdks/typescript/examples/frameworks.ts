@@ -2,14 +2,14 @@
  * LangGraph, OpenAI Agents SDK, CrewAI, Google ADK, and MCP —
  * every framework example from the README, compile-checked.
  */
-import { MemoryOS } from "memoryos-sdk";
-import { governedNode } from "memoryos-sdk/middleware/langgraph";
-import { governed as governedOpenAI } from "memoryos-sdk/middleware/openai-agents";
-import { governCrew } from "memoryos-sdk/middleware/crewai";
-import { governed as governedAdk } from "memoryos-sdk/middleware/google-adk";
-import { governMcp, type JsonRpcRequest, type JsonRpcResponse } from "memoryos-sdk/middleware/mcp";
+import { Agentflow } from "agentflow-sdk";
+import { governedNode } from "agentflow-sdk/middleware/langgraph";
+import { governed as governedOpenAI } from "agentflow-sdk/middleware/openai-agents";
+import { governCrew } from "agentflow-sdk/middleware/crewai";
+import { governed as governedAdk } from "agentflow-sdk/middleware/google-adk";
+import { governMcp, type JsonRpcRequest, type JsonRpcResponse } from "agentflow-sdk/middleware/mcp";
 
-const mg = new MemoryOS({ apiKey: process.env.MG_KEY });
+const mg = new Agentflow({ apiKey: process.env.MG_KEY });
 
 /* --------------------- LangGraph --------------------- */
 interface CrmState { customerId: number; op: "read" | "write"; userTask: string; }

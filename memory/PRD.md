@@ -18,7 +18,7 @@ User elaboration: framework-agnostic AI Runtime Governance Layer that sits betwe
 
 ### V6 — Public demo deployment prep (Feb 15, 2026)
 - **CORS/CSRF allowlist**: `.env` now sets `ALLOWED_ORIGINS` to include `http://localhost:3000/3001`, the preview host, and the deployed `ai-governance-layer.emergent.host`; `ALLOWED_ORIGIN_SUFFIXES` extended with `.emergent.host` and `.emergentagent.com` so any Emergent deployment subdomain works. No wildcard `*` in production — verified by `test_acao_is_never_wildcard`. Disallowed origins get 403 on mutations, GETs and Bearer/SDK callers stay exempt.
-- **GitHub rebrand**: every `https://github.com/agentflow` link now points to `https://github.com/c0ntr1butr/Agentflow.ai` — header, footer social row, Pricing "Community" CTA, and Playground header (data-testids: `public-header-github`, `playground-header-github`).
+- **GitHub rebrand**: every `https://github.com/c0ntr1butr/DeltaDevs.ai` link now points to `https://github.com/c0ntr1butr/DeltaDevs.ai` — header, footer social row, Pricing "Community" CTA, and Playground header (data-testids: `public-header-github`, `playground-header-github`).
 - **Contact details** unified to Email `praneethmangala339@gmail.com` and Phone `+91 83285 75111`:
   - Home: new `#contact` strip above the footer (`home-contact-email`, `home-contact-phone`).
   - Docs: new contact section at page bottom (`docs-contact-email`, `docs-contact-phone`).
@@ -36,7 +36,7 @@ User elaboration: framework-agnostic AI Runtime Governance Layer that sits betwe
 
 ### V8 — Premium polish + Agentflow.ai rebrand (Feb 15, 2026)
 - **Rebrand** Agentflow → **Agentflow.ai** across every public route, /auth, and /console (verified: `innerText.match(/Agentflow/g).length === 0` on all 10 audited pages). Header logo, footer brand, hero copy, legal bar, and code samples all say Agentflow.ai. Python SDK folder path (`/app/sdks/python/agentflow/`) intentionally kept — pip package name is out-of-scope.
-- **Footer redesign** in `PublicShell.jsx`: replaced the 3-card Contact block with a clean **4-column inline layout** (Contact / Email / Phone / GitHub). Each has an uppercase label + value below — no cards, no boxes. Email uses `truncate + whitespace-nowrap` so it can never wrap character-by-character. Phone uses `whitespace-nowrap`. All Twitter/LinkedIn/X social links removed — only GitHub remains, pointing to `https://github.com/c0ntr1butr/Agentflow.ai`.
+- **Footer redesign** in `PublicShell.jsx`: replaced the 3-card Contact block with a clean **4-column inline layout** (Contact / Email / Phone / GitHub). Each has an uppercase label + value below — no cards, no boxes. Email uses `truncate + whitespace-nowrap` so it can never wrap character-by-character. Phone uses `whitespace-nowrap`. All Twitter/LinkedIn/X social links removed — only GitHub remains, pointing to `https://github.com/c0ntr1butr/DeltaDevs.ai`.
 - **TypeScript SDK repackaged**: `@agentflow/sdk` → `agentflow-sdk` v0.4.0. Class `Agentflow` kept exported for backwards-compat with `Agentflow.ai` as an alias — both work. Produced production tarball `/app/sdks/typescript/agentflow-sdk-0.4.0.tgz` (24.2 kB, 40 files). Local install verified: `npm install ./agentflow-sdk-0.4.0.tgz && require('agentflow-sdk')` returns all classes.
 - **Verified by testing_agent (iteration_5.json)**: 17/17 TS SDK vitest, 2/2 backend smoke (login + Dodo Payments checkout), footer inline-Contact audit + rebrand audit + Twitter/LinkedIn purge across 9 public routes + /auth + /console.
 
@@ -48,7 +48,7 @@ User elaboration: framework-agnostic AI Runtime Governance Layer that sits betwe
 - Both workflow YAMLs validated with `yaml.safe_load`.
 
 ### V10 — Pre-npm-release polish (Feb 15, 2026)
-- **Enterprise-grade README**: shields.io badge row (npm/downloads/CI/provenance/TypeScript/Node/license/bundle), TOC, install, quickstart (both `evaluate()` and `guard()`), configuration, Decision API-reference table, all 5 middleware examples (LangGraph / OpenAI Agents SDK / CrewAI / Google ADK / MCP), error-handling matrix, runtime-compatibility table, links to memoryos.dev + Python SDK + LICENSE + Contributing.
+- **Enterprise-grade README**: shields.io badge row (npm/downloads/CI/provenance/TypeScript/Node/license/bundle), TOC, install, quickstart (both `evaluate()` and `guard()`), configuration, Decision API-reference table, all 5 middleware examples (LangGraph / OpenAI Agents SDK / CrewAI / Google ADK / MCP), error-handling matrix, runtime-compatibility table, links to agentflow.ai + Python SDK + LICENSE + Contributing.
 - **package.json metadata**: 20-keyword tag cloud, author object with URL, `homepage#readme`, `funding` (GitHub sponsors), `publishConfig.provenance:true`, `files` whitelist, `engines.node>=18`, new `verify` script (`typecheck && test && test:examples && build`).
 - **CHANGELOG.md** v0.4.0 in Keep-a-Changelog format.
 - **Apache 2.0 LICENSE** file at SDK root.

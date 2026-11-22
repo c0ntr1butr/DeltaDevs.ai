@@ -8,14 +8,14 @@ CrewAI task, Google ADK action, and MCP call._
 
 [![npm version](https://img.shields.io/npm/v/agentflow-sdk?color=%2306b6d4&label=npm)](https://www.npmjs.com/package/agentflow-sdk)
 [![npm downloads](https://img.shields.io/npm/dw/agentflow-sdk?color=%2306b6d4)](https://www.npmjs.com/package/agentflow-sdk)
-[![CI status](https://img.shields.io/github/actions/workflow/status/c0ntr1butr/Agentflow.ai/sdk-ci.yml?branch=main&label=CI)](https://github.com/c0ntr1butr/Agentflow.ai/actions/workflows/sdk-ci.yml)
+[![CI status](https://img.shields.io/github/actions/workflow/status/c0ntr1butr/DeltaDevs.ai/sdk-ci.yml?branch=main&label=CI)](https://github.com/c0ntr1butr/DeltaDevs.ai/actions/workflows/sdk-ci.yml)
 [![npm provenance](https://img.shields.io/badge/provenance-verified-06b6d4)](https://docs.npmjs.com/generating-provenance-statements)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Node](https://img.shields.io/node/v/agentflow-sdk?color=%2306b6d4)](https://nodejs.org/)
 [![Apache 2.0](https://img.shields.io/npm/l/agentflow-sdk?color=%2306b6d4)](./LICENSE)
 [![Bundle size](https://img.shields.io/bundlephobia/minzip/agentflow-sdk?label=bundle&color=%2306b6d4)](https://bundlephobia.com/package/agentflow-sdk)
 
-[Website](https://memoryos.dev) · [Docs](https://memoryos.dev/docs) · [Playground](https://memoryos.dev/playground) · [Python SDK](https://github.com/c0ntr1butr/Agentflow.ai/tree/main/sdks/python) · [Changelog](./CHANGELOG.md)
+[Website](https://agentflow.ai) · [Docs](https://agentflow.ai/docs) · [Playground](https://agentflow.ai/playground) · [Python SDK](https://github.com/c0ntr1butr/DeltaDevs.ai/tree/main/sdks/python) · [Changelog](./CHANGELOG.md)
 
 </div>
 
@@ -36,7 +36,7 @@ first-class objects with history), and **auditable** (a signed record of every
 decision is emitted for your SIEM).
 
 This package is the TypeScript / Node client. There's also a Python SDK
-([`pip install memorygate`](https://github.com/c0ntr1butr/Agentflow.ai/tree/main/sdks/python))
+([`pip install agentflow`](https://github.com/c0ntr1butr/DeltaDevs.ai/tree/main/sdks/python))
 and a plain REST API.
 
 ---
@@ -73,8 +73,8 @@ npm install agentflow-sdk
 Node ≥ 18 (uses native `fetch` + `AbortController`). Also works in Deno, Bun,
 and modern browsers. Zero non-dev dependencies.
 
-Grab a runtime API key at [memoryos.dev](https://memoryos.dev) → *Console* → *API
-Keys*, or [book an enterprise pilot](https://memoryos.dev/pilot) for a
+Grab a runtime API key at [agentflow.ai](https://agentflow.ai) → *Console* → *API
+Keys*, or [book an enterprise pilot](https://agentflow.ai/pilot) for a
 self-hosted install.
 
 ---
@@ -351,11 +351,11 @@ tree-shaking works in every modern bundler.
 
 ## Contributing
 
-- Repo: [c0ntr1butr/Agentflow.ai](https://github.com/c0ntr1butr/Agentflow.ai)
-- Issues: [github.com/c0ntr1butr/Agentflow.ai/issues](https://github.com/c0ntr1butr/Agentflow.ai/issues)
+- Repo: [c0ntr1butr/DeltaDevs.ai](https://github.com/c0ntr1butr/DeltaDevs.ai)
+- Issues: [github.com/c0ntr1butr/DeltaDevs.ai/issues](https://github.com/c0ntr1butr/DeltaDevs.ai/issues)
 - Local dev:
   ```bash
-  git clone https://github.com/c0ntr1butr/Agentflow.ai
+  git clone https://github.com/c0ntr1butr/DeltaDevs.ai
   cd Agentflow.ai/sdks/typescript
   yarn install
   yarn verify           # typecheck + test + example-typecheck + build

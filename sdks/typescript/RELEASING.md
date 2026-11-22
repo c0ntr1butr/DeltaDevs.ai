@@ -8,7 +8,7 @@ Zero-manual-steps releases via GitHub Actions.
 2. **Create an npm access token** — [npmjs.com/settings/YOUR_USER/tokens](https://www.npmjs.com/settings/~/tokens) → *Generate New Token* → **Automation** (or *Granular*, scoped to `agentflow-sdk`).
    - Copy the token (starts with `npm_...`). You won't see it again.
 3. **Add it to your GitHub repo** as a secret:
-   - `github.com/c0ntr1butr/Agentflow.ai` → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**
+   - `github.com/c0ntr1butr/DeltaDevs.ai` → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**
    - Name: `NPM_TOKEN`
    - Value: paste the token
 4. **First-time only — reserve the package name** by running one manual publish so npm knows the package belongs to you:

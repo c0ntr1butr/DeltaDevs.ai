@@ -9,7 +9,7 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Initial public release of `agentflow-sdk` — the TypeScript / Node client for
-  [Agentflow.ai](https://github.com/c0ntr1butr/Agentflow.ai) runtime governance.
+  [Agentflow.ai](https://github.com/c0ntr1butr/DeltaDevs.ai) runtime governance.
 - **Core client** `Agentflow` (also exported as `Agentflow.ai`) with:
   - `evaluate(input)` — returns a `Decision` object (never throws on
     `block`/`escalate`; the caller decides how to react).
@@ -49,4 +49,4 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Provenance is enabled on publish; every version on npm carries a signed
   statement linking back to the exact GitHub commit that produced it.
 
-[0.4.0]: https://github.com/c0ntr1butr/Agentflow.ai/releases/tag/v0.4.0
+[0.4.0]: https://github.com/c0ntr1butr/DeltaDevs.ai/releases/tag/v0.4.0

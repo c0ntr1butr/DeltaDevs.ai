@@ -12,7 +12,7 @@ const TIERS = [
     price: "Free",
     tag: "forever",
     for: "solo builders & OSS agents",
-    cta: ["Start on GitHub", "https://github.com/c0ntr1butr/Agentflow.ai", "btn-secondary"],
+    cta: ["Start on GitHub", "https://github.com/c0ntr1butr/DeltaDevs.ai", "btn-secondary"],
     features: [
       ["100k governed decisions / mo",      true],
       ["Up to 3 agents",                    true],

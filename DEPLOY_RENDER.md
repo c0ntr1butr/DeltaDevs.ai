@@ -4,14 +4,14 @@
 
 The repository includes `render.yaml` with two services:
 
-- `memoryos-api` — FastAPI backend
-- `memoryos-web` — React static site
+- `runtimeos-api` — FastAPI backend
+- `runtimeos-web` — React static site
 
 Create/connect the repository in Render and deploy the Blueprint.
 
 ### Required API secrets
 
-Set these in the `memoryos-api` service:
+Set these in the `runtimeos-api` service:
 
 ```text
 MONGO_URL (optional — omit for in-memory demo mode)=<MongoDB Atlas connection string>

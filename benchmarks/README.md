@@ -42,8 +42,8 @@ Mongo update (counter) → JSON audit log → response.
 Run against your own deployment:
 
 ```bash
-MEMORYGATE_URL=https://api.your-org.example.com \
-  TOKEN=$(curl -sX POST $MEMORYGATE_URL/api/auth/login \
+AGENTFLOW_URL=https://api.your-org.example.com \
+  TOKEN=$(curl -sX POST $AGENTFLOW_URL/api/auth/login \
             -H 'Content-Type: application/json' \
             -d '{"email":"...","password":"..."}' | jq -r .token) \
   python3 benchmarks/bench.py --n 5000 --c 64

@@ -413,7 +413,7 @@ export default function Playground() {
               ["pip install agentflow[openai]",                      "OpenAI Agents SDK middleware."],
               ["pip install agentflow[crewai]",                      "CrewAI GovernedCrew subclass."],
               ["pip install agentflow[google]",                      "Google ADK integration."],
-              ["memorygate mcp-proxy --upstream ...",                 "Governance proxy for any MCP server."],
+              ["agentflow mcp-proxy --upstream ...",                 "Governance proxy for any MCP server."],
               ["npm install agentflow-sdk",                         "TypeScript / Node client."],
             ].map(([cmd, hint]) => (
               <div key={cmd} className="surface rounded-lg p-4">

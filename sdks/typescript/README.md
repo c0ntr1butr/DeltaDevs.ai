@@ -139,7 +139,7 @@ Everything is env-driven if you don't pass options:
 | `baseUrl`        | `AGENTFLOW_URL`        | `https://api.agentflow.ai`   |
 | `timeoutMs`      | —                       | `5000`                         |
 
-> **Note:** the env var names use the internal `MEMORYGATE_` prefix (they map to
+> **Note:** env vars use the `AGENTFLOW_` prefix:
 > the Python SDK). `Agentflow.ai` is the brand; both `Agentflow.ai` and `Agentflow` are
 > exported classes and behave identically.
 

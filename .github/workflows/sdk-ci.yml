@@ -38,4 +38,4 @@ jobs:
           mkdir -p /tmp/install-verify && cd /tmp/install-verify
           npm init -y >/dev/null
           npm install "$GITHUB_WORKSPACE/sdks/typescript/$TARBALL" --silent
-          node -e "const m=require('agentflow-sdk'); if (typeof m.MemoryGate!=='function'||typeof m.MemoryOS!=='function') { process.exit(1); }"
+          node -e "const m=require('agentflow-sdk'); if (typeof m.Agentflow!=='function') { process.exit(1); }"

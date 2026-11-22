@@ -5,7 +5,7 @@ and sustained throughput. Reports as markdown for docs/README.
 
 Usage:
     python benchmarks/bench.py                  # local (http://localhost:8001)
-    MEMORYGATE_URL=... TOKEN=... python benchmarks/bench.py  --n 2000 --c 32
+    AGENTFLOW_URL=... TOKEN=... python benchmarks/bench.py  --n 2000 --c 32
 """
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ from typing import List
 import httpx
 
 DEFAULTS = dict(
-    url=os.environ.get("MEMORYGATE_URL", "http://localhost:8001"),
+    url=os.environ.get("AGENTFLOW_URL", "http://localhost:8001"),
     token=os.environ.get("TOKEN"),
     n=1000,
     concurrency=16,

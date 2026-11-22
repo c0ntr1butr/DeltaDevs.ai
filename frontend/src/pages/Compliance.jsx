@@ -37,7 +37,7 @@ export default function Compliance() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `memorygate_${active}_report.csv`;
+    a.download = `runtimeos_${active}_report.csv`;
     document.body.appendChild(a);
     a.click();
     a.remove();

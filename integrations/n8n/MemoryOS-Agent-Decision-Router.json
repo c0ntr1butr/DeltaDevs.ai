@@ -4,16 +4,16 @@
     {
       "parameters": {
         "httpMethod": "POST",
-        "path": "memoryos-decision",
+        "path": "runtimeos-decision",
         "responseMode": "responseNode",
         "options": {}
       },
-      "id": "memoryos-webhook",
+      "id": "runtimeos-webhook",
       "name": "Agentflow.ai Decision Webhook",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [240, 300],
-      "webhookId": "memoryos-decision"
+      "webhookId": "runtimeos-decision"
     },
     {
       "parameters": {

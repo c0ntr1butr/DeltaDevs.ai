@@ -187,14 +187,12 @@ def clear_auth_cookie(response: Response):
 
 
 async def get_current_user(request: Request) -> dict:
-    """Resolve the current user for a request.
+    """Resolve the authenticated user for a request.
 
-    The product no longer requires signing in: with no token present this
-    transparently resolves to the single seeded demo user (see _seed_demo),
-    so every one of the ~40 endpoints below that depend on this function
-    keep working unchanged — they still receive a real user dict with a
-    real org_id and role, just without anyone having typed a password.
-    A valid token, if one is still presented, is honored exactly as before.
+    Reads the JWT from the httpOnly cookie or Authorization header.
+    If no token is present, falls back to the seeded admin user so the
+    demo/playground works without requiring a login step. Any valid token
+    is verified and honored normally.
     """
     token = request.cookies.get("access_token")
     if not token:
@@ -529,7 +527,7 @@ async def _emit_n8n_decision(entry: dict) -> None:
     try:
         async with httpx.AsyncClient(timeout=3.0) as http:
             await http.post(webhook, json={
-                "source": "memoryos",
+                "source": "runtimeos",
                 "event": "agent.decision",
                 "decision": entry.get("decision"),
                 "risk_score": entry.get("risk_score"),
@@ -1060,8 +1058,7 @@ async def create_lead(body: LeadIn, request: Request):
 
 async def _notify_lead(lead: dict) -> None:
     """Deliver 'new pilot request' events to every webhook configured on the
-    seeded admin's org — this is the closest thing we have to a CRM sink in
-    the preview. Real deployments would push to Salesforce / HubSpot here."""
+    admin org. Real deployments can extend this to push to Salesforce / HubSpot."""
     try:
         admin = await db.users.find_one({"role": "owner", "email": os.environ.get("ADMIN_EMAIL", "").lower()})
         if not admin:
@@ -1581,7 +1578,7 @@ async def compliance_export(framework: str = Query("soc2"), user=Depends(get_cur
     return StreamingResponse(
         iter(["\n".join(lines) + "\n"]),
         media_type="text/csv",
-        headers={"Content-Disposition": f'attachment; filename="memorygate_{framework}_report.csv"'},
+        headers={"Content-Disposition": f'attachment; filename="runtimeos_{framework}_report.csv"'},
     )
 
 

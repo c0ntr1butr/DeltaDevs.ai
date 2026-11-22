@@ -9,8 +9,8 @@ const ROWS = [
 ];
 
 const BENCH_CMD = `# Full source: benchmarks/bench.py
-MEMORYGATE_URL=https://api.your-org.example.com \\
-TOKEN=$(curl -sX POST $MEMORYGATE_URL/api/auth/login \\
+AGENTFLOW_URL=https://api.your-org.example.com \\
+TOKEN=$(curl -sX POST $AGENTFLOW_URL/api/auth/login \\
           -H 'Content-Type: application/json' \\
           -d '{"email":"...","password":"..."}' | jq -r .token) \\
 python3 benchmarks/bench.py --n 5000 --c 64`;

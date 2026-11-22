@@ -44,7 +44,7 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Notes
 
 - The runtime `Agentflow` class name is preserved for symmetry with the
-  Python SDK (`memorygate`). `Agentflow.ai` is exported as an alias — both names
+  Python SDK (`agentflow`). `Agentflow` is the primary export name.
   work identically, use whichever fits your brand.
 - Provenance is enabled on publish; every version on npm carries a signed
   statement linking back to the exact GitHub commit that produced it.

@@ -103,7 +103,7 @@ export default function Product() {
       <section className="border-y hairline bg-black/30">
         <div className="max-w-[1400px] mx-auto px-6 py-16">
           <div className="text-[11px] tracking-[0.2em] uppercase text-neutral-500 font-mono-plex mb-3">
-            who evaluates memorygate
+            who evaluates runtimeos
           </div>
           <h2 className="font-display text-3xl tracking-tight">
             Built for the three people who decide whether you ship AI safely.

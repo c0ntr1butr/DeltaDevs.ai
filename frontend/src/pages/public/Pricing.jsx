@@ -76,7 +76,7 @@ const FAQ = [
   ["Do you train on our data?",
    "No. Agentflow.ai stores decisions for audit only. There is no model training, no cross-tenant analytics, and no third-party sharing. All decisions are tenant-scoped from insert to export."],
   ["How does the SDK version rollout work?",
-   "Semantic versioning. `memorygate>=0.1,<1` is the pinned production line — no breaking changes without a major bump. Middleware modules opt-in via extras (e.g. `pip install agentflow[langgraph]`)."],
+   "Semantic versioning. `agentflow>=0.1,<1` is the pinned production line — no breaking changes without a major bump. Middleware modules opt-in via extras (e.g. `pip install agentflow[langgraph]`)."],
   ["Can we start self-hosted?",
    "Yes on Enterprise. We provide a Helm chart, Terraform modules for AWS/Azure/GCP, and a single-node Docker Compose for pilots. Managed cloud remains available for burst regions."],
   ["What's the pilot process?",

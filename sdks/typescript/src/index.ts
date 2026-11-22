@@ -15,7 +15,6 @@
  *   `agentflow-sdk/middleware/mcp`
  */
 export { Agentflow } from "./client.js";
-export { Agentflow as Agentflow } from "./client.js";
 export type {
   ClientOptions,
   EvaluateInput,

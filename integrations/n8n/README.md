@@ -9,7 +9,7 @@ Import `Agentflow.ai-Agent-Decision-Router.json` into n8n. Activate it and copy 
 Set:
 
 ```env
-N8N_WEBHOOK_URL=https://YOUR-N8N-HOST/webhook/memoryos-decision
+N8N_WEBHOOK_URL=https://YOUR-N8N-HOST/webhook/runtimeos-decision
 ```
 
 ## 3. Demo

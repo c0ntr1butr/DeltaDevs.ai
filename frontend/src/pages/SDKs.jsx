@@ -71,7 +71,7 @@ graph.add_node("tool", governed_tool)
 graph.compile()`,
 
   openai: `# pip install agentflow openai-agents
-from memorygate.middleware.openai_agents import governed
+from agentflow.middleware.openai_agents import governed
 from agents import Agent, Runner
 
 mg_agent = governed(
@@ -85,7 +85,7 @@ result = Runner.run(mg_agent, "Summarize account 42 for me")
 # before it reaches the tool implementation.`,
 
   crewai: `# pip install agentflow crewai
-from memorygate.middleware.crewai import GovernedCrew
+from agentflow.middleware.crewai import GovernedCrew
 from crewai import Agent, Task, Crew
 
 crew = GovernedCrew(
@@ -101,7 +101,7 @@ crew.kickoff()   # tool executions are wrapped by Agentflow.ai transparently`,
 # every tool call is evaluated against your policies before reaching the
 # real server. Zero code changes in the calling agent.
 
-memorygate mcp-proxy \\
+agentflow mcp-proxy \\
     --upstream https://mcp.example.com \\
     --api-key mg_... \\
     --agent-id agent_123 \\

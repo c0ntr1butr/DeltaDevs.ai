@@ -28,29 +28,29 @@ else:
 
 const DEPLOY = {
   docker: `# Single-node pilot (works on a laptop or a bastion)
-docker run --name memorygate \\
+docker run --name runtimeos \\
     -p 8080:8080 \\
     -e MONGO_URL="mongodb://mongo:27017" \\
     -e JWT_SECRET="$(openssl rand -hex 32)" \\
     -e ENVIRONMENT=production \\
     -e ALLOWED_ORIGINS="https://console.your-org.example.com" \\
-    ghcr.io/memorygate/runtime:0.4
+    ghcr.io/deltadevs/runtimeos:0.4
 
 # Then point your agents at http://<host>:8080 via the SDK's base_url.
 `,
-  kubernetes: `# helm repo add memorygate https://charts.agentflow.ai
-# helm install memorygate memorygate/runtime \\
-#     --namespace memorygate --create-namespace \\
+  kubernetes: `# helm repo add runtimeos https://charts.agentflow.ai
+# helm install runtimeos runtimeos/runtime \\
+#     --namespace runtimeos --create-namespace \\
 #     -f values.yaml
 
 # values.yaml (production-ready)
 replicas: 3
 image:
-  repository: ghcr.io/memorygate/runtime
+  repository: ghcr.io/deltadevs/runtimeos
   tag: "0.4"
 mongo:
   # bring your own replica set — do NOT run the embedded single-node in prod
-  externalUrl: "mongodb+srv://memorygate:...@cluster0.mongodb.net/memorygate"
+  externalUrl: "mongodb+srv://runtimeos:...@cluster0.mongodb.net/runtimeos"
 ingress:
   enabled: true
   host: api.your-org.internal
@@ -72,8 +72,8 @@ env:
   ENVIRONMENT: production
 `,
   aws: `# terraform module (excerpt)
-module "memorygate" {
-  source  = "memorygate/runtime/aws"
+module "runtimeos" {
+  source  = "deltadevs/runtimeos/aws"
   version = "0.4"
 
   vpc_id             = aws_vpc.main.id
@@ -85,7 +85,7 @@ module "memorygate" {
   documentdb_engine  = "mongodb"
   documentdb_size    = "db.r6g.large"
 
-  domain_name        = "api.memorygate.your-org.io"
+  domain_name        = "api.runtimeos.your-org.io"
   route53_zone_id    = data.aws_route53_zone.main.id
   acm_certificate    = aws_acm_certificate.mg.arn
 
@@ -104,8 +104,8 @@ module "memorygate" {
 # az containerapp create ...
 
 # Bicep module (excerpt)
-module memorygate './memorygate/runtime.bicep' = {
-  name: 'memorygate'
+module runtimeos './runtimeos/runtime.bicep' = {
+  name: 'runtimeos'
   params: {
     location:        location
     replicaCount:    3
@@ -123,16 +123,16 @@ module memorygate './memorygate/runtime.bicep' = {
 }
 `,
   gcp: `# GCP: Cloud Run + Firestore (MongoDB compat via Atlas) OR MongoDB Atlas on GCP
-# gcloud run deploy memorygate ...
+# gcloud run deploy runtimeos ...
 
 # terraform (excerpt)
-resource "google_cloud_run_v2_service" "memorygate" {
-  name     = "memorygate-runtime"
+resource "google_cloud_run_v2_service" "runtimeos" {
+  name     = "runtimeos-runtime"
   location = var.region
   template {
     scaling { min_instance_count = 3, max_instance_count = 20 }
     containers {
-      image = "ghcr.io/memorygate/runtime:0.4"
+      image = "ghcr.io/deltadevs/runtimeos:0.4"
       resources { limits = { cpu = "2", memory = "2Gi" } }
       env {
         name  = "MONGO_URL"
@@ -291,18 +291,18 @@ throw d.toException();
               Every middleware wraps your tool call sites so the governance layer stays invisible in application code.
             </p>
             {[
-              ["LangGraph",  `from memorygate.middleware.langgraph import governed_node
+              ["LangGraph",  `from agentflow.middleware.langgraph import governed_node
 graph.add_node("crm", governed_node(call_crm, mg=mg,
     agent_id="agent_crm_copilot",
     resource_from=lambda s: f"crm.{s['op']}",
     payload_from=lambda s: s["args"]))`],
-              ["OpenAI Agents SDK", `from memorygate.middleware.openai_agents import governed
+              ["OpenAI Agents SDK", `from agentflow.middleware.openai_agents import governed
 guarded = governed(agent, mg=mg, agent_id="agent_crm_copilot")
 Runner.run_sync(guarded, "Summarize account 42")`],
-              ["CrewAI", `from memorygate.middleware.crewai import GovernedCrew
+              ["CrewAI", `from agentflow.middleware.crewai import GovernedCrew
 crew = GovernedCrew(agents=[analyst], tasks=[t], mg=mg,
                     agent_id_for=lambda a: f"agent_{a.role}")`],
-              ["Google ADK", `from memorygate.middleware.google_adk import governed
+              ["Google ADK", `from agentflow.middleware.google_adk import governed
 governed(agent, mg=mg, agent_id="agent_gemini_crm")`],
             ].map(([label, code]) => (
               <div key={label} className="mt-4">
@@ -319,14 +319,14 @@ governed(agent, mg=mg, agent_id="agent_gemini_crm")`],
               Governance in front of any Model Context Protocol server. Zero code changes in
               the calling agent — just repoint the MCP URL.
             </p>
-            <CodeBlock onCopy={copy} code={`memorygate mcp-proxy \\
+            <CodeBlock onCopy={copy} code={`agentflow mcp-proxy \\
     --upstream https://mcp.internal.example.com \\
     --api-key mg_... \\
     --agent-id agent_mcp_gateway \\
     --listen 0.0.0.0:7443
 
 # Then in your MCP client:
-#   MCP_URL=http://memorygate-mcp.internal:7443/mcp
+#   MCP_URL=http://runtimeos-mcp.internal:7443/mcp
 `}/>
           </div>
 

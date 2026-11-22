@@ -9,7 +9,7 @@ description = "Runtime governance for autonomous AI agents by Agentflow.ai. Fram
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "Apache-2.0"}
-authors = [{name = "Agentflow.ai", email = "hello@agentflow.ai"}]
+authors = [{name = "DeltaDevs", email = "hello@agentflow.ai"}]
 keywords = ["ai", "governance", "agents", "security", "zero-trust", "langgraph", "crewai", "mcp", "agentflow"]
 classifiers = [
   "Development Status :: 4 - Beta",

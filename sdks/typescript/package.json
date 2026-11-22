@@ -78,7 +78,7 @@
     "sdk"
   ],
   "author": {
-    "name": "Agentflow.ai",
+    "name": "DeltaDevs",
     "url": "https://github.com/c0ntr1butr/DeltaDevs.ai"
   },
   "license": "Apache-2.0",
@@ -90,10 +90,6 @@
   },
   "bugs": {
     "url": "https://github.com/c0ntr1butr/DeltaDevs.ai/issues"
-  },
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/c0ntr1butr"
   },
   "engines": {
     "node": ">=18"

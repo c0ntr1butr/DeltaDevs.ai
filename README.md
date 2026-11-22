@@ -167,14 +167,14 @@ yarn build
 ## Project structure
 
 ```text
-Agentflow.ai/                    # Existing Agentflow.ai product foundation
-  backend/server.py          # Existing API + integrated Kill Switch routes
-  frontend/src/pages/        # Existing console + new KillSwitch.jsx
-  sdks/python/               # Existing Python SDK + adapters
-  sdks/typescript/           # Existing TypeScript SDK
-  integrations/n8n/          # Existing automation integration
-  benchmarks/                # Existing benchmark harness
-  render.yaml                # Backend deployment blueprint
+RuntimeOS_DeltaDevs_KillSwitch/
+  backend/server.py          # FastAPI API + Kill Switch routes
+  frontend/src/pages/        # React console + KillSwitch.jsx
+  sdks/python/               # Python SDK + framework adapters
+  sdks/typescript/           # TypeScript SDK
+  integrations/n8n/          # n8n automation integration
+  benchmarks/                # Benchmark harness
+  render.yaml                # Render backend deployment blueprint
   frontend/vercel.json       # Vercel SPA configuration
   docs/                      # Architecture, demo, deployment notes
 ```

@@ -130,7 +130,7 @@ REACT_APP_BACKEND_URL=http://localhost:8001
 Do not commit real Dodo or Breeth API keys.
 
 
-## EmberGround demo mode
+## Demo mode
 For the hackathon, MongoDB is optional. If `MONGO_URL` is not set, the API uses `mongomock-motor` and keeps state in the service process. This avoids database setup and is suitable for a short-lived demo. Set a real MongoDB URL later for persistence.
 
 ### n8n

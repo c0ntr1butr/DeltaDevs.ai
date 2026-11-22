@@ -41,8 +41,8 @@ all      = ["langgraph>=0.2", "openai-agents>=0.0.6", "crewai>=0.60", "google-ad
 [project.urls]
 Homepage      = "https://agentflow.ai"
 Documentation = "https://docs.agentflow.ai"
-Repository    = "https://github.com/Embergroundagents/Agentflow.ai"
-Issues        = "https://github.com/Embergroundagents/Agentflow.ai/issues"
+Repository    = "https://github.com/c0ntr1butr/DeltaDevs.ai"
+Issues        = "https://github.com/c0ntr1butr/DeltaDevs.ai/issues"
 
 [project.scripts]
 agentflow = "agentflow.cli:main"

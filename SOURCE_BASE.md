@@ -1,6 +1,6 @@
 # Source base
 
-Primary source code base: `Agentflow.ai-EmberGround-Winning-Demo.zip` from the prior EmberGround build.
+Primary source code base: `Agentflow.ai codebase.
 
 Secondary design reference: `RuntimeOS_KillSwitch_BuildWithBob.zip` created earlier in this conversation.
 

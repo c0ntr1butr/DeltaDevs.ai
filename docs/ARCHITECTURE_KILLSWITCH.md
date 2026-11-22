@@ -1,6 +1,6 @@
 # RuntimeOS Kill Switch — Architecture
 
-The Kill Switch is added to the EmberGround RuntimeOS policy and execution boundary. It does not replace the existing framework adapters, identity, tenant, policy, risk, audit or developer SDK layers.
+The Kill Switch is added to the RuntimeOS policy and execution boundary. It does not replace the existing framework adapters, identity, tenant, policy, risk, audit or developer SDK layers.
 
 ```text
 Agent framework -> ActionRequest -> Identity + delegation -> Existing Policy/Risk Engine

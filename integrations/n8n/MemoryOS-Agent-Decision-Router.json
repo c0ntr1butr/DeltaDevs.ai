@@ -116,7 +116,7 @@
   },
   "active": false,
   "settings": {"executionOrder": "v1"},
-  "versionId": "memoryos-emberground-2026",
+  "versionId": "agentflow-2026",
   "meta": {"templateCredsSetupCompleted": true},
   "tags": []
 }

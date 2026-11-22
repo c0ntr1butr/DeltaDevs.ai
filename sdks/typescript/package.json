@@ -79,21 +79,21 @@
   ],
   "author": {
     "name": "Agentflow.ai",
-    "url": "https://github.com/Embergroundagents/Agentflow.ai"
+    "url": "https://github.com/c0ntr1butr/DeltaDevs.ai"
   },
   "license": "Apache-2.0",
-  "homepage": "https://github.com/Embergroundagents/Agentflow.ai#readme",
+  "homepage": "https://github.com/c0ntr1butr/DeltaDevs.ai#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Embergroundagents/Agentflow.ai.git",
+    "url": "git+https://github.com/c0ntr1butr/DeltaDevs.ai.git",
     "directory": "sdks/typescript"
   },
   "bugs": {
-    "url": "https://github.com/Embergroundagents/Agentflow.ai/issues"
+    "url": "https://github.com/c0ntr1butr/DeltaDevs.ai/issues"
   },
   "funding": {
     "type": "github",
-    "url": "https://github.com/sponsors/Embergroundagents"
+    "url": "https://github.com/sponsors/c0ntr1butr"
   },
   "engines": {
     "node": ">=18"
